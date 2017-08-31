@@ -1,0 +1,34 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	text-align: center;
+}
+
+.container {
+	margin: 0px auto 150px auto;
+	width: 80%;
+	padding: 0px 3% 10% 3%;
+	position: relative;
+}
+
+.jumbotron {
+/*	background: none;*/
+/*	width: 90%;*/
+/*	text-align: left;*/
+/*	padding: 0px 0px 50px 0px;*/
+/*	margin: 0px auto 10% auto;*/
+}
+
+.navbar-static-bottom {
+	padding: 20px 20px 40px 20px;
+	background: none;
+	color: white;
+	font-size: 10pt;
+	text-align: center;
+	border: 0px;
+	border-color: none;
+	margin: 15px auto 0px auto;
+	box-shadow: none;
+}

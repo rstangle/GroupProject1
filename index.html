@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Marvel Puzzle Challenge</title>
+
+	<!-- jQuery link -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+<!-- 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+	
+	<!-- Google Fonts -->	
+	<link href="https://fonts.googleapis.com/css?family=Chela+One|Sedgwick+Ave|Luckiest+Guy|Permanent+Marker|Jomhuria|Medula+One|Righteous|Roboto" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
+</head>
+<body>
+	
+	<div class="container">
+		<div class="jumbotron">
+			<img src="assets/images/trivia-header.png" class="img-responsive" alt="Marvel Puzzle Challenge logo">
+		</div>
+
+
+		<!-- PUZZLE IMAGE HERE -->
+		<div id="game-image" class="jumbotron">
+			This is where the puzzle image goes
+			<!-- <img src="assets/images/trivia-header.png" class="img-responsive" alt="Marvel Puzzle Image from Marvel API"> -->
+		</div>
+
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-xs-12 col-md-8">
+				<div class="panel panel-default">
+					  <div id="stats" class="panel-body">
+					  	<h2 id="right"></h2>
+					    <h2 id="wrong"></h2>
+					  </div>
+				</div>
+
+				<div id="question-area" class="panel panel-info">
+  					<div id="show-image"></div>
+
+  					<div class="panel">
+    					<h1 id="timer" class="panel-title">20</h1>
+  					</div>
+  					
+  					<div class="panel-body">
+    					<p id="question">This is where the question goes</p>
+  					</div>
+
+  					<!-- List group -->
+					<ul class="list-group">
+					    <li id="answer1" class="list-group-item">Answer Choice 1</li>
+					    <li id="answer2" class="list-group-item">Answer Choice 2</li>
+					    <li id="answer3" class="list-group-item">Answer Choice 3</li>
+					    <li id="answer4" class="list-group-item">Answer Choice 4</li>
+					</ul>
+
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+
+		</div>
+
+
+		<div class="row">
+  			<div class="col-xs-2 col-md-4"></div>
+  			<div class="col-xs-8 col-md-4">
+  				<!-- ANSWER BOX -->
+				<form class="form-inline">
+					  <div class="form-group">
+					    <label for="user-guess">Answer</label>
+					    <input type="text" class="form-control" id="user-guess" placeholder="Jane Doe">
+					  </div>
+					  
+					  <button type="submit" class="btn btn-default">Send</button>
+					</form>
+
+  				<button id="next" type="button" class="btn btn-default btn-lg btn-block">Let's Play Again</button>
+  			</div>
+  			<div class="col-xs-2 col-md-4"></div>
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<nav class="navbar navbar-default navbar-static-bottom">
+  		<div>
+    		&#169; Copyright 2017 Ryan Stangle, Erik Denman, Mark Soliman, Tony Caio &nbsp;&nbsp; | &nbsp;&nbsp; Hope you enjoyed the game! &nbsp;&nbsp; | &nbsp;&nbsp; Used for education purposes.<br>
+    		<i>X-MEN: The Animated Series</i> and <i>X-Men:Evolution</i> theme songs are properties of Marvel Entertainment Group.  Names of characters are the property of their respective owners. All rights reserved.
+ 		</div>
+	</nav>
+
+	<!-- Music -->
+		<!-- <audio autoplay loop>
+	  		<source src="assets/music/music.m4a" type="audio/mpeg">
+	 	</audio> -->
+	
+	<script src="assets/javascript/app.js"></script>
+</body>
+</html>
