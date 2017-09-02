@@ -1,5 +1,5 @@
 // url to send to ajax method
-var qURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+"iron man"+"&apikey="+"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
+var qURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+"captain america"+"&apikey="+"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
 // var qURL = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=th&apikey=0044cc7cb16f9553976a74b044391f37";
 
 $.ajax({
@@ -16,7 +16,8 @@ $.ajax({
 	//hides image div so only shuffled puzzle appears
 	$("#image").hide();
 	//console.log(img);
-	
+	$("<div>").addClass("attribution").append($("<p>"+response.attributionText+"</p>")).append(response.attributionHTML).appendTo("body");
+
 	console.log(response);
  	console.log(response.data.results[0].thumbnail.path);
 
@@ -94,7 +95,7 @@ function cutImage(){
  		//(the 32.65% and 33%)
  		c.className = "canvas";
  		//CHECKING X AND Y VALUES...NOT REQUIRED
- 		console.log("x: "+x+" -- "+"Y: "+y);
+ 		
  		//The Magic:
  		//The grid is 3X3...for i = 0, 1, 2 three sections of row 1
  		if(i<3){
@@ -106,6 +107,7 @@ function cutImage(){
  			x = i*w; 
  		// y coordinate is always 0 on first row
  			y = 0;
+ 			console.log("x: "+x+" -- "+"Y: "+y);
  		// canvas function to get drawing context
  			var ctx = c.getContext("2d");
  		//drawImage function:
@@ -123,6 +125,7 @@ function cutImage(){
  		//x coordinate since all sections are equal always start at 0*w, 1*w, 2*w...inorder to get that from i
  		//we can use i%3....here when i=3 i%3=0 , when i=4 i%3=1, when i=5 i%3=2
  		    x = w * (i%3);
+ 		    console.log("x: "+x+" -- "+"Y: "+y);
  		//same process as above condition
  			var ctx = c.getContext("2d");
  			ctx.drawImage(imgs, x,y,w,h,0,0,c.width,c.height);
@@ -134,6 +137,7 @@ function cutImage(){
  			y = 2*h;
  		//same logic as earlier need 0,1,2 * w consecutively 
  			x = w*(i%3);
+ 			console.log("x: "+x+" -- "+"Y: "+y);
  		//same process again
  			var ctx = c.getContext("2d");
  			ctx.drawImage(imgs, x,y,w,h,0,0,c.width,c.height);
@@ -144,3 +148,16 @@ function cutImage(){
  //look at this in console...and then look at the id's in html file...
  console.log(arr);
  console.log(Math.floor(Math.random()*9));
+ var $grid = $(".grid").packery({
+
+ 	itemSelector: ".grid-item",
+ 	
+ 
+
+ });
+
+ $grid.find('.grid-item').each( function( i, gridItem ) {
+  var draggie = new Draggabilly( gridItem );
+  // bind drag events to Packery
+  $grid.packery( 'bindDraggabillyEvents', draggie );
+});

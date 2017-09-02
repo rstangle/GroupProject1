@@ -4,19 +4,39 @@ body:after{
 	display: block;
 	clear: both;
 }
-
+.packery:after{
+	content: '';
+  display: block;
+  clear: both;
+}
+.packery{
+	float:left;
+	height: 450px;
+}
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
 .grid{
 	float:left;
 
 	width:300px;
 	height:450px;
 }
+.grid-item:hover {
+  border-color: hsla(0, 0%, 100%, 0.5);
+  cursor: move;
+}
 .grid-item{
 	float:left;
-	border:1px solid blue;
-
-	height:32.9%;
-	width:32.65%;
+	height:148.05px;
+	width:97.95px;
+}
+.grid-item.is-dragging,
+.grid-item.is-positioning-post-drag {
+  background: #C90;
+  z-index: 2;
 }
 .canvas{
 
