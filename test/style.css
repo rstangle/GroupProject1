@@ -11,7 +11,9 @@ body:after{
 }
 .packery{
 	float:left;
-	height: 450px;
+	border:5px solid black;
+	width:320px;
+	height: 470px;
 }
 .grid:after {
   content: '';
@@ -21,7 +23,7 @@ body:after{
 .grid{
 	float:left;
 
-	width:300px;
+	width:320px;
 	height:450px;
 }
 .grid-item:hover {
@@ -31,6 +33,12 @@ body:after{
 .grid-item{
 	float:left;
 	height:148.05px;
+	width:97.95px;
+}
+.drop{
+	border:2px solid black;
+	float:left;
+	height: 148.05px;
 	width:97.95px;
 }
 .grid-item.is-dragging,
@@ -55,4 +63,9 @@ body:after{
 }
 p{
 	z-index: 10;
+}
+#myCanvas{
+ float:left;
+ width:200px;
+ height: 200px;
 }

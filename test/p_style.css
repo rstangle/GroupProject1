@@ -1,0 +1,44 @@
+.puzzle-container:after{
+	content: " ";
+	display: block;
+	clear: both;
+}
+.mytitle{
+
+	text-align: center;
+}
+.difficulty:after{
+	content: " ";
+	display: block;
+	clear: both;
+}
+.difficulty{
+	float:left;
+	margin:auto;
+	height: 50px;
+	width:185px;
+	border:1px solid black;
+}
+.mybtn{
+	color:white;
+	background:#21414D;
+	margin:5px;
+	float:left;
+}
+.grid{
+	position:relative;
+	width:300px;
+	height:450px;
+	padding:5px;
+	border:0.1px solid black;
+	float: left;
+	margin:10px;
+	margin-top: 0;
+}
+.grid:after{
+
+	content: " ";
+	display: block;
+	clear: both; 
+
+}

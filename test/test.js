@@ -1,5 +1,5 @@
 // url to send to ajax method
-var qURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+"captain america"+"&apikey="+"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
+var qURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+"thor"+"&apikey="+"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
 // var qURL = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=th&apikey=0044cc7cb16f9553976a74b044391f37";
 
 $.ajax({
@@ -12,6 +12,7 @@ $.ajax({
 	var x = response.data.results[0].thumbnail.path;
 	var y = x + "/portrait_uncanny." + z;
 	var img = $("<img>").attr("src", y).attr("id", "piece-1");
+	console.log(img.width());
 	img.appendTo("#image");
 	//hides image div so only shuffled puzzle appears
 	$("#image").hide();
@@ -26,7 +27,10 @@ $.ajax({
  	//otherwise it will cause an error with canvas drawImage() function
  	$("#piece-1").on("load",function (){
      //once our image is loaded call the function that cuts it to pieces
+     
      cutImage();
+     console.log($(".grid-item > canvas").attr("id"));
+
      //the following  commented code is an example of cutting one piece only
      //====================================================================
 	// var imgs = document.getElementById("piece-1");
@@ -94,6 +98,8 @@ function cutImage(){
  		//assigns canvas a class which I used to set canvas'S width and height to be that of sections 
  		//(the 32.65% and 33%)
  		c.className = "canvas";
+ 		c.id = "mycanvas";
+ 		console.log(c.id);
  		//CHECKING X AND Y VALUES...NOT REQUIRED
  		
  		//The Magic:
@@ -148,16 +154,42 @@ function cutImage(){
  //look at this in console...and then look at the id's in html file...
  console.log(arr);
  console.log(Math.floor(Math.random()*9));
- var $grid = $(".grid").packery({
+//  var $grid = $(".grid").packery({
 
- 	itemSelector: ".grid-item",
+//  	itemSelector: ".grid-item",
  	
- 
 
- });
+//  });
+//  // $ (".grid-item").sortable({
 
- $grid.find('.grid-item').each( function( i, gridItem ) {
-  var draggie = new Draggabilly( gridItem );
-  // bind drag events to Packery
-  $grid.packery( 'bindDraggabillyEvents', draggie );
+//  // 		grid: [20,10]
+
+//  // });
+
+//  $grid.find('.grid-item').each( function(i, gridItem) {
+
+//   var draggie = new Draggabilly( gridItem, {
+
+//   	// containment: ".packery",
+  	
+//   } );
+//   // bind drag events to Packery
+//   $grid.packery( 'bindUIDraggableEvents', draggie );
+  
+// });
+var x= document.getElementById("mycanvas");
+var z = x.getContext("2d");
+z.fillStyle = "red";
+z.fillRect(0,0,x.width,x.height);
+
+x.draggable({
+
+	// snap:true,
+	
+	// snapTolerance: 20
 });
+$(".drop").droppable({
+
+	accept: ".grid-item",
+	tolerance: "fit"
+})
