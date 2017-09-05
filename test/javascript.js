@@ -1,3 +1,9 @@
+
+
+var soundID = "Thunder";
+var backgroundMusic = "M-GameBG";
+
+
 var pieceW = 300;
 var pieceH = 450;
 var rowsCol;
@@ -5,7 +11,31 @@ var win;
 var dropped;
 var indexARR = [];
 
+//Loads sound from Create JS
+function loadSound () {
+  createjs.Sound.registerSound("Thunder1.mp3", soundID);
+//   createjs.Sound.registerSound("M-GameBG.mp3", soundID);
+}
+
+//Plays sound from Create JS
+function playSound () {
+  createjs.Sound.play(soundID);
+  // createjs.Sound.play(backgroundMusic);
+}
+
+window.onload = function() {
+	$(".puzzle-container").hide();
+	$("#frame").hide();
+	// Had to add this here in order to get the thunder sound effect. Also added to the HTML body tag, 
+	// but not sure if it is needed there or if it actually working there. Removed from Body tag in HTML and still works.
+	loadSound(); // Will try the loadSounds() for multiple sounds as well.
+};
+
 $(".mybtn").on("click", function(){
+	$(".page-header").hide();
+	$(".puzzle-container").show();
+	$("#frame").show();
+	
 
 	if($(this).attr("data-value") === "3"){
 
@@ -31,12 +61,13 @@ $(".mybtn").on("click", function(){
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
 	makeDrag_drop();
 	$(".difficulty").hide();
+	playSound();
 	callImage();
 });
 function callImage(){
 
 	var queryURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+
-	"thor"+"&apikey="+
+	"jean grey"+"&apikey="+
 	"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
 
 	var img = $("<img>").attr("id", "myImage");
@@ -274,3 +305,4 @@ function makeDrag_drop(){
 			}
 		});
 }
+

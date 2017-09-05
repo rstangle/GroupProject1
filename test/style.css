@@ -1,71 +1,62 @@
-body:after{
-
+body:after {
 	content: " ";
 	display: block;
 	clear: both;
 }
-.packery:after{
+
+.packery:after {
 	content: '';
-  display: block;
-  clear: both;
+  	display: block;
+  	clear: both;
 }
-.packery{
-	float:left;
-	border:5px solid black;
-	width:320px;
-	height: 470px;
+
+.packery {
+	float: left;
+	height: 450px;
 }
+
 .grid:after {
   content: '';
   display: block;
   clear: both;
 }
-.grid{
-	float:left;
 
-	width:320px;
-	height:450px;
+.grid {
+	float: left;
+	width: 300px;
+	height: 450px;
 }
+
 .grid-item:hover {
-  border-color: hsla(0, 0%, 100%, 0.5);
+  border-color: hsla (0, 0%, 100%, 0.5);
   cursor: move;
-}
-.grid-item{
-	float:left;
-	height:148.05px;
-	width:97.95px;
-}
-.drop{
-	border:2px solid black;
-	float:left;
+ }
+
+.grid-item {
+	float: left;
 	height: 148.05px;
-	width:97.95px;
+	width: 97.95px;
 }
+
 .grid-item.is-dragging,
 .grid-item.is-positioning-post-drag {
   background: #C90;
   z-index: 2;
 }
-.canvas{
 
+.canvas {
 	width:97.95px;
 	height: 148.05px;
 }
-#localimg{
 
+#localimg {
+	float: left;
+} 
+
+#image {
 	float: left;
 }
-#image{
 
-	float: left;
-	
-
-}
-p{
+p {
 	z-index: 10;
-}
-#myCanvas{
- float:left;
- width:200px;
- height: 200px;
 }

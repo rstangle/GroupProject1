@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SoundTest</title>
+
+	
+<script src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
+
+</head>
+<body>
+
+<body onload="init()">
+<script src="http://code.createjs.com/soundjs-0.5.2.min.js"/>
+<script>
+function init() {
+    // if initializeDefaultPlugins returns false, we cannot play sound in this browser
+    if (!createjs.Sound.initializeDefaultPlugins()) {return;}
+ 
+    var audioPath = "assets/";
+    var sounds = [
+        {id:"Music", src:"18-machinae_supremacy-lord_krutors_dominion.ogg"},
+        {id:"Thunder", src:"Thunder1.ogg"}
+    ];
+ 
+    createjs.Sound.alternateExtensions = ["mp3"];
+    createjs.Sound.addEventListener("fileload", handleLoad);
+    createjs.Sound.registerSounds(sounds, audioPath);
+}
+ 
+function handleLoad(event) {
+    createjs.Sound.play(event.src);
+}
+</script>
+</body>
+</body>
+</html>
