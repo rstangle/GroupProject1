@@ -13,7 +13,7 @@ var indexARR = [];
 
 //Loads sound from Create JS
 function loadSound () {
-  createjs.Sound.registerSound("../sounds/Thunder1.mp3", soundID);
+  createjs.Sound.registerSound("assets/sounds/Thunder1.mp3", soundID);
 //   createjs.Sound.registerSound("M-GameBG.mp3", soundID);
 }
 
@@ -101,7 +101,7 @@ function createDroppables_Draggables(num, w, h){
 	for(var i = 0; i<num; i++){
 		var id = i.toString();
 		var drop = $("<div>").addClass("drop").attr("grid-index", i);
-		drop.css({float: "left", background: "#515151", width: w, height: h, position: "relative"});
+		drop.css({float: "left", background: "none", width: w, height: h, position: "relative"});
 		var drag = $("<div>").addClass("drag").attr("id", "drag"+id);
 		drag.css({float: "left", background: "#dddddd", width: w, height: h,"z-index": 3});
 		drop.appendTo(".grid");
@@ -283,6 +283,10 @@ function makeDrag_drop(){
 			start: function(event, ui){
 
 				lastPlace = $(this).parent();
+			},
+			stop: function(){
+
+				playSound();
 			}
 		});
 
