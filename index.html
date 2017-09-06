@@ -2,114 +2,167 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dynamic Puzzle</title>
 
-	<title>Marvel Puzzle Challenge</title>
-
-	<!-- jQuery link -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+	<!-- BOOTSTRAP CDN -->
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
-<!-- 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
-	
-	<!-- Google Fonts -->	
-	<link href="https://fonts.googleapis.com/css?family=Chela+One|Sedgwick+Ave|Luckiest+Guy|Permanent+Marker|Jomhuria|Medula+One|Righteous|Roboto" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jcanvas/20.1.2/min/jcanvas.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	<script type="text/javascript" src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Amarante|Anton|Audiowide|Black+Ops+One|Bowlby+One|Open+Sans+Condensed:300" rel="stylesheet">
+	
 
 </head>
 <body>
+		
+		<!-- <div id="leftside"></div> -->
+		<!-- <img id="leftside" src="../assets/images/images/leftside.png" alt="logo" class="img-rounded"> -->
+		
+			<!-- <img src="../assets/images/images/leftside.jpg" class="img-responsive" alt="Marvel Puzzle Challenge logo"> -->
+
+		<div id="background" class="container">
+			<!-- <div id="leftside"></div> -->
+		 	<div id="headline" class="row">
+		 		<div class="col-md-3"></div>
+				<div class="col-md-3">
+					<div id="logo" class="img-responsive">					
+	<!-- 	  				<img src="../assets/images/logo.png" alt="logo" class="img-rounded"> -->
+					</div>
+				</div>
+				<div class="col-md-6">
+				<h1>PUZZLE<br><span style="color: #f75b20">CHALLENGE</span></h1>
+				</div>
+			</div>	
+			<!-- <div class="jumbotron">
+				<img src="" class="img-responsive" alt="Marvel Puzzle Challenge logo">
+			</div> -->
+
+		<!-- STATIC MODAL TRIAL -->
+
+		<!-- Modal for Start Button -->
+		<div class="modal fade" id="modalStart" role="dialog">
+		    <div class="modal-dialog">
+				    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Danger True Believers!</h4>
+		        </div>
+		        <div class="modal-body">
+		          <img id="thanos" class="img-responsive" src="assets/images/images/thanos.png">
+		          <p>Thanos has imprisoned Earth's Mightiest Heros in the Mirror of Agamotto and scrambled the portal.  Can you help our heros by solving the puzzles and stabalizing the portal?  <br><br>
+		          Help return Earth's Mightiest Heros so they can defeat Thanos before he conquers the Earth!</p>
+		        </div>
+		        <div class="modal-footer">
+						        	
+					
+					<button  type="button" class="mybtn btn btn-success" data-dismiss="modal" data-value="3">Easy</button>
+					<button type="button" class="mybtn btn btn-warning" data-dismiss="modal" data-value="4">Medium</button>
+					<button type="button" class="mybtn btn btn-danger" data-dismiss="modal" data-value="5">Hard</button>
+
+							
+		          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+		        </div>
+		     </div>
+						      
+		   </div>
+		</div>
 	
-	<div class="container">
-		<div class="jumbotron">
-			<img src="assets/images/trivia-header.png" class="img-responsive" alt="Marvel Puzzle Challenge logo">
+	<!-- Modal for Rules Button -->
+		<div class="modal fade" id="modalRules" role="dialog">
+		    <div class="modal-dialog">
+				    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">How to Play</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>You will be given a random puzzle image that has been shuffled. Your goal is to put the pieces together in the correct order to rescue the hero.  But don't take too long as you are racing the countdown clock.  If the clock reaches zero before you've solved the puzzle, the hero is lost.<br><br>
+		          Upon the start of the game, you will pick a difficulty setting of Easy, Medium or Hard.<br><br>
+		          <span style="font-size: 18px; color: #00C851;">Easy Setting:</span><br>
+		          You will have 20 seconds to solve a 9-piece puzzle.<br><br>
+		          <span style="font-size: 18px; color: #FF8800">Medium Setting:</span><br>
+		          You will have 30 seconds to solve a 16-piece puzzle.<br><br>
+		          <span style="font-size: 18px; color: #CC0000" >Hard Setting:</span><br>
+		          You will have 60 seconds to solve a 25-piece puzzle.<br><br>
+		          Good Luck!</p>
+
+		        </div>
+		        
+		     </div>
+						      
+		   </div>
 		</div>
 
+		<!-- Button trigger modal -->
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="page-header">
+						  <h1>Marvel Puzzle Challenge <br>
+						  <small>Do you have what it takes to save Earth's Mightiest Heros?</small></h1> <br>
+						
+				  <!-- <h2>Welcome to Marvel Puzzle Challenge</h2> -->
+				  <!-- Trigger the modal with a button -->
+						  <button id="start" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalStart">Start</button><br>
+						  <button id="rules" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalRules">How to Play</button>
 
-		<!-- PUZZLE IMAGE HERE -->
-		<div id="game-image" class="jumbotron">
-			This is where the puzzle image goes
-			<!-- <img src="assets/images/trivia-header.png" class="img-responsive" alt="Marvel Puzzle Image from Marvel API"> -->
-		</div>
-
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-xs-12 col-md-8">
-				<div class="panel panel-default">
-					  <div id="stats" class="panel-body">
-					  	<h2 id="right"></h2>
-					    <h2 id="wrong"></h2>
-					  </div>
-				</div>
-
-				<div id="question-area" class="panel panel-info">
-  					<div id="show-image"></div>
-
-  					<div class="panel">
-    					<h1 id="timer" class="panel-title">20</h1>
-  					</div>
-  					
-  					<div class="panel-body">
-    					<p id="question">This is where the question goes</p>
-  					</div>
-
-  					<!-- List group -->
-					<ul class="list-group">
-					    <li id="answer1" class="list-group-item">Answer Choice 1</li>
-					    <li id="answer2" class="list-group-item">Answer Choice 2</li>
-					    <li id="answer3" class="list-group-item">Answer Choice 3</li>
-					    <li id="answer4" class="list-group-item">Answer Choice 4</li>
-					</ul>
-
-				</div>
+					</div> <!-- closes page header div -->
+				</div> <!-- closes col-md-6 div -->
+				<div class="col-md-3"></div>
 			</div>
-			<div class="col-md-2"></div>
+			  
 
+		<!-- END STATIC MODAL TRIAL -->
+
+
+			<!-- 	<div class="mytitle"><h1>Marvel Mania</h1></div>
+				<br> -->
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div id="frame">
+						<div class="puzzle-container">
+						<!-- 	<div class="difficulty"> -->
+						
+						<!-- 		<button class="playSound mybtn" data-value="3">Easy</button>
+								<button class="mybtn" data-value="4">Medium</button>
+								<button class="mybtn" data-value="5">Hard</button> -->
+
+						<!-- 	</div> -->
+							<div class="grid">
+								
+							</div>
+
+						</div>
+						<div class="empty"></div>
+					
+					</div>
+
+				</div>
+				<div class="col-md-4"></div>
+				<!-- <div class="col-md-3"></div> -->
+			</div>
 		</div>
-
-
-		<div class="row">
-  			<div class="col-xs-2 col-md-4"></div>
-  			<div class="col-xs-8 col-md-4">
-  				<!-- ANSWER BOX -->
-				<form class="form-inline">
-					  <div class="form-group">
-					    <label for="user-guess">Answer</label>
-					    <input type="text" class="form-control" id="user-guess" placeholder="Jane Doe">
-					  </div>
-					  
-					  <button type="submit" class="btn btn-default">Send</button>
-					</form>
-
-  				<button id="next" type="button" class="btn btn-default btn-lg btn-block">Let's Play Again</button>
-  			</div>
-  			<div class="col-xs-2 col-md-4"></div>
-		</div>
-
-	</div>
-
-	<!-- Footer -->
-	<nav class="navbar navbar-default navbar-static-bottom">
-  		<div>
-    		&#169; Copyright 2017 Ryan Stangle, Erik Denman, Mark Soliman, Tony Caio &nbsp;&nbsp; | &nbsp;&nbsp; Hope you enjoyed the game! &nbsp;&nbsp; | &nbsp;&nbsp; Used for education purposes.<br>
-    		<i>X-MEN: The Animated Series</i> and <i>X-Men:Evolution</i> theme songs are properties of Marvel Entertainment Group.  Names of characters are the property of their respective owners. All rights reserved.
- 		</div>
-	</nav>
-
-	<!-- Music -->
-		<!-- <audio autoplay loop>
-	  		<source src="assets/music/music.m4a" type="audio/mpeg">
-	 	</audio> -->
 	
-	<script src="assets/javascript/app.js"></script>
+<!-- Music -->
+		<audio autoplay loop>
+	  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
+	 	</audio>
+
+	<script type="text/javascript" src="assets/javascript/javascript.js"></script>
+
 </body>
 </html>
