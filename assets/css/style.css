@@ -121,6 +121,11 @@ h1 small {
 	clear: both;
 }
 
+.wrapper {
+	position: relative;
+	text-align: center;
+}
+
 #frame {
 	margin: 10% auto;
 	position: relative;
@@ -133,6 +138,22 @@ h1 small {
 	text-align: center;
 }
 
+#timer {
+	position: absolute;
+	top: 16%;
+	left: 41%;
+	z-index: 100;
+	width: 82.05px;
+	max-height: 59px;
+	text-align: center;
+	margin: 0% auto;
+}
+
+/*#timer > h1 {
+	font-size: 36px;
+	text-align: center;
+}*/
+
 .puzzle-container {
 	position: relative;
 	float: left;
@@ -141,7 +162,7 @@ h1 small {
 	z-index: -1;
 }
 
-.puzzle-container:after{
+.puzzle-container:after {
 	content: " ";
 	display: block;
 	clear: both;
@@ -149,16 +170,17 @@ h1 small {
 	z-index: -1;
 }
 
-.mytitle{
-
+.mytitle {
 	text-align: center;
 }
-.difficulty:after{
+
+.difficulty:after {
 	content: " ";
 	display: block;
 	clear: both;
 }
-.difficulty{
+
+.difficulty {
 	float:left;
 	margin:auto;
 	height: 50px;
@@ -166,7 +188,7 @@ h1 small {
 /*	text-align: center center;*/
 /*	border:1px solid black;*/
 }
-.mybtn{
+.mybtn {
 	color:white;
 /*	background:#21414D;*/
 	margin: 0% 5%;
@@ -177,7 +199,7 @@ h1 small {
 	text-align: center;
 }
 
-.grid{
+.grid {
 	position:relative;
 	width:300px;
 	height:450px;
@@ -188,7 +210,7 @@ h1 small {
 	margin-top: 0;
 }
 
-.grid:after{
+.grid:after {
 	content: " ";
 	display: block;
 	clear: both; 

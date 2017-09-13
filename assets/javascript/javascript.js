@@ -3,6 +3,9 @@
 var soundID = "Thunder";
 var backgroundMusic = "M-GameBG";
 
+var heroImage = ["cyclops (x-men: battle of the atom)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
+var number = 0;
+
 
 var pieceW = 300;
 var pieceH = 450;
@@ -42,13 +45,12 @@ $(".mybtn").on("click", function(){
 		pieceW = Math.ceil(pieceW * (33/100));
 		pieceH = Math.ceil(pieceH * (33/100));
 		rowsCol = 3*3;
-		
 	}
 	else if($(this).attr("data-value") === "4"){
 
 		pieceW = Math.ceil(pieceW * (25/100));
 		pieceH = Math.ceil(pieceH * (25/100));
-		rowsCol = 4*4;	
+		rowsCol = 4*4;
 	}
 	else{
 
@@ -63,11 +65,12 @@ $(".mybtn").on("click", function(){
 	$(".difficulty").hide();
 	playSound();
 	callImage();
+	run(45);
 });
 function callImage(){
 
 	var queryURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+
-	"mojo"+"&apikey="+
+	"vision"+"&apikey="+
 	"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
 
 	var img = $("<img>").attr("id", "myImage");
@@ -310,3 +313,52 @@ function makeDrag_drop(){
 		});
 }
 
+
+//************************************************************************************************************************************
+//**** COUNTDOWN TIMER ***************************************************************************************************************
+//************************************************************************************************************************************
+
+	function run() {
+      intervalId = setInterval(decrement, 1000);
+      if ($(".mybtn").attr("data-value") === "3") {
+        number = 20;
+      } 
+      else if ($(".mybtn").attr("data-value") === "4") {
+      	number = 45;
+      }
+	  else if ($(".mybtn").attr("data-value") === "5") {
+	  	number = 90;
+	  }
+
+      $("#timer").css("color", "white").html("<h1>" + number + "</h1>");
+    };
+
+    function decrement() {
+      number--;
+      $("#timer").html("<h1>" + number + "</h1>");
+      if(number <= 15) {
+      	$("#timer").css("color", "yellow").html("<h1>" + number + "</h1>");
+      }
+
+      if(number <= 10) {
+      	$("#timer").css("color", "red").html("<h1>" + number + "</h1>");
+      }
+
+      if(number === 0) {
+        stop();
+        $("#timer").css("color", "red").html("<h1>0</h1>");
+        // wrong++;
+      }
+    }
+
+    function stop() {
+      clearInterval(intervalId);
+    }
+
+    function reset() {
+    	number = 20;
+		$("#timer").html(20);
+		// $("#stats").hide();
+		// $("#question-area").show();
+		run();
+	}
