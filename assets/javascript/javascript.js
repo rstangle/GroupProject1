@@ -29,15 +29,18 @@ function playSound () {
 window.onload = function() {
 	$(".puzzle-container").hide();
 	$("#frame").hide();
+	$("#score-panel").hide();
 	// Had to add this here in order to get the thunder sound effect. Also added to the HTML body tag, 
 	// but not sure if it is needed there or if it actually working there. Removed from Body tag in HTML and still works.
 	loadSound(); // Will try the loadSounds() for multiple sounds as well.
+	playAudio();
 };
 
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
 	$(".puzzle-container").show();
 	$("#frame").show();
+	$("#score-panel").show();
 	
 
 	if($(this).attr("data-value") === "3"){
@@ -45,18 +48,21 @@ $(".mybtn").on("click", function(){
 		pieceW = Math.ceil(pieceW * (33/100));
 		pieceH = Math.ceil(pieceH * (33/100));
 		rowsCol = 3*3;
+		number = 20;
 	}
 	else if($(this).attr("data-value") === "4"){
 
 		pieceW = Math.ceil(pieceW * (25/100));
 		pieceH = Math.ceil(pieceH * (25/100));
 		rowsCol = 4*4;
+		number = 45;
 	}
 	else{
 
 		pieceW = Math.ceil(pieceW * (20/100));
 		pieceH = Math.ceil(pieceH * (20/100));
 		rowsCol = 5*5;
+		number = 90;
 	}
 	
 	dropped = rowsCol;
@@ -65,7 +71,7 @@ $(".mybtn").on("click", function(){
 	$(".difficulty").hide();
 	playSound();
 	callImage();
-	run(45);
+	run();
 });
 function callImage(){
 
@@ -320,15 +326,15 @@ function makeDrag_drop(){
 
 	function run() {
       intervalId = setInterval(decrement, 1000);
-      if ($(".mybtn").attr("data-value") === "3") {
-        number = 20;
-      } 
-      else if ($(".mybtn").attr("data-value") === "4") {
-      	number = 45;
-      }
-	  else if ($(".mybtn").attr("data-value") === "5") {
-	  	number = 90;
-	  }
+   //    if ($(".mybtn").attr("data-value") === "3") {
+   //      number = 20;
+   //    } 
+   //    else if ($(".mybtn").attr("data-value") === "4") {
+   //    	number = 45;
+   //    }
+	  // else if ($(".mybtn").attr("data-value") === "5") {
+	  // 	number = 90;
+	  // }
 
       $("#timer").css("color", "white").html("<h1>" + number + "</h1>");
     };
@@ -356,9 +362,23 @@ function makeDrag_drop(){
     }
 
     function reset() {
-    	number = 20;
-		$("#timer").html(20);
+    	number = 0;
+		$("#timer").html(number);
 		// $("#stats").hide();
 		// $("#question-area").show();
 		run();
+	}
+
+//************************************************************************************************************************************
+//**** BACKGROUND MUSIC **************************************************************************************************************
+//************************************************************************************************************************************
+
+	var audio = document.getElementById("game-music");
+
+	function playAudio() {
+		audio.play();
+	}
+
+	function pauseAudio() {
+		audio.pause();
 	}

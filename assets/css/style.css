@@ -84,6 +84,19 @@ h1 small {
 
 }
 
+#audio-controls {
+	color: white;
+	text-align: center;
+	margin: 20px auto 0px auto;
+	font-family: 'Audiowide', sans-serif;
+}
+
+#play, #mute {
+	margin: 10px auto 0px auto;
+	min-width: 65px;
+	text-align: center;
+}
+
 #start {
 	margin: 10% 2% 3% 2%;
 	padding: 2% 15%;
@@ -126,11 +139,38 @@ h1 small {
 	text-align: center;
 }
 
+/*.well {
+	position: relative;
+	top: 250px;
+	margin-left: 15%;
+	background-color: rgba(8, 24, 57, 0.3);
+	border: solid 3px #18355f;
+	min-height: 455px;
+	text-align: center;
+}*/
+
+.panel {
+	position: relative;
+	top: 250px;
+	margin-left: 15%;
+	background-color: rgba(8, 24, 57, 0.4);
+	border: none;
+	min-height: 100px;
+	text-align: center;
+	box-shadow: 2px 2px 5px #181b24;
+	font-family: 'Audiowide', cursive;
+}
+
+/*.panel {
+	margin-bottom: 40%;
+	background-color: rgba(8, 24, 57, 0.3);
+}*/
+
 #frame {
 	margin: 10% auto;
 	position: relative;
 	z-index: 99;
-	background-image: url("../images/images/mirror-frame.png");
+	background-image: url("../images/images/mirror-frame2.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	width: 387px;

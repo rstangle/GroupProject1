@@ -32,16 +32,32 @@
 		<div id="background" class="container">
 			<!-- <div id="leftside"></div> -->
 		 	<div id="headline" class="row">
-		 		<div class="col-md-3"></div>
-				<div class="col-md-3">
+				<div class="col-md-2"></div>
+		 			
+		 		<div class="col-md-3">
 					<div id="logo" class="img-responsive">					
 	<!-- 	  				<img src="../assets/images/logo.png" alt="logo" class="img-rounded"> -->
 					</div>
 				</div>
-				<div class="col-md-6">
-				<h1>PUZZLE<br><span style="color: #f75b20">CHALLENGE</span></h1>
+
+				<div class="col-md-5">
+					<h1>PUZZLE<br><span style="color: #f75b20">CHALLENGE</span></h1>
+				</div>
+
+				<div class="col-md-2">
+					<div id="audio-controls"> 
+						<p>Audio Controls</p>
+						<button id="play" onclick="playAudio()"  type="button" class="btn btn-success"><span class="glyphicon glyphicon-play" aria-hidden="true" aria-label="play"></span></button>
+						
+						<button id="mute" onclick="pauseAudio()" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-volume-off" aria-hidden="true" aria-label="mute"></span></button>
+						
+						<audio id="game-music" loop>
+					  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
+					 	</audio>
+				 	</div>
 				</div>
 			</div>	
+
 			<!-- <div class="jumbotron">
 				<img src="" class="img-responsive" alt="Marvel Puzzle Challenge logo">
 			</div> -->
@@ -127,11 +143,19 @@
 
 		<!-- END STATIC MODAL TRIAL -->
 
-
+<!-- *******  MAIN GAME AREA  ********************************************************************************************************************************
+********************************************************************************************************************************************************* -->
+			
 			<!-- 	<div class="mytitle"><h1>Marvel Mania</h1></div>
 				<br> -->
 			<div class="row">
-				<div class="col-md-4"></div>
+				<!-- EMPTY COLUMN -->
+				<div class="col-md-3"></div>	
+				
+				<!-- EMPTY COLUMN -->
+				<!-- <div class="col-md-1"></div> -->
+
+				<!-- GAME BOARD AREA -->
 				<div class="col-md-4">
 					<div class="wrapper">
 						<h2 id="timer" class="panel-title">0</h2>
@@ -156,15 +180,49 @@
 					</div>
 
 				</div>
-				<div class="col-md-4"></div>
+
+				<!-- <div class="col-md-1"></div> -->
+
+				<!-- HERO SAVED PANEL -->
+				<div class="col-md-3">
+					<div id="score-panel">
+						<div id="saved" class="panel panel-info">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">HEROES SAVED</h3>
+						  </div>
+						  <div class="panel-body">saved hero image here</div>
+						</div>
+						
+						<div id="lost" class="panel panel-danger">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">HEROES LOST</h3>
+						  </div>
+						  <div class="panel-body">lost hero image here</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-2">
+<!-- 					<button onclick="playAudio()"  type="button" class="btn btn-primary btn-sm">Play Audio</button>
+					<button onclick="pauseAudio()" type="button" class="btn btn-primary btn-sm">Mute Audio</button>
+					
+					<audio id="game-music" loop>
+				  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
+				 	</audio> -->
+				</div>
+
+
 				<!-- <div class="col-md-3"></div> -->
 			</div>
 		</div>
 	
 <!-- Music -->
-		<audio autoplay loop>
+
+<!-- 
+		<audio id="game-music" loop>
 	  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
-	 	</audio>
+	 	</audio> -->
 
 	<script type="text/javascript" src="assets/javascript/javascript.js"></script>
 
