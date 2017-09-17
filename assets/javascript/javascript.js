@@ -38,6 +38,7 @@ window.onload = function() {
 
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
+	$("#main-menu-image").hide();
 	$(".puzzle-container").show();
 	$("#frame").show();
 	$("#score-panel").show();
