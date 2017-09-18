@@ -110,7 +110,7 @@ function createDroppables_Draggables(num, w, h){
 
 	for(var i = 0; i<num; i++){
 		var id = i.toString();
-		var drop = $("<div>").addClass("drop").attr("grid-index", i);
+		var drop = $("<div>").addClass("drop").attr("grid-index", i).attr("id", "drop"+id);
 		drop.css({float: "left", background: "none", width: w, height: h, position: "relative"});
 		var drag = $("<div>").addClass("drag").attr("id", "drag"+id);
 		drag.css({float: "left", background: "#dddddd", width: w, height: h,"z-index": 3});
@@ -296,7 +296,7 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
-				playSound();
+				
 			}
 		});
 
@@ -309,7 +309,7 @@ function makeDrag_drop(){
 				var isRight = $(this).attr("grid-index"); 
 				console.log(isRight + " " + yours);
 				if($(this).children().length > 0 && (yours === isRight)){
-
+					playSound();
 					$(droppedOn).children().detach().prependTo($(lastPlace));
 					$(dragged).detach().css({
                			 top: 0,
