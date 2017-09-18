@@ -5,7 +5,7 @@ var backgroundMusic = "M-GameBG";
 
 var heroImage = ["cyclops (x-men: battle of the atom)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
 var number = 0;
-
+var randomHeros = ["", "", ""];
 
 var pieceW = 300;
 var pieceH = 450;
@@ -66,18 +66,19 @@ $(".mybtn").on("click", function(){
 		number = 90;
 	}
 	
-	dropped = rowsCol;
+	// dropped = rowsCol;
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
 	makeDrag_drop();
-	$(".difficulty").hide();
+	// $(".difficulty").hide();
 	playSound();
 	callImage();
 	run();
 });
+
 function callImage(){
 
 	var queryURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+
-	"vision"+"&apikey="+
+	"captain america"+"&apikey="+
 	"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
 
 	var img = $("<img>").attr("id", "myImage");
@@ -296,6 +297,10 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
+				if(isWin(rowsCol)){
+
+					$("#modalStart").modal("show");
+				}
 				
 			}
 		});
@@ -319,7 +324,30 @@ function makeDrag_drop(){
 			}
 		});
 }
+function isWin(num){
+	var count = 0;
+	for(var i=0; i < num; i++){
+		var id = i.toString();
+		var static= $("#drop"+id).attr("grid-index");
+		var motion= $("#drop"+id).children().children().attr("id");
+		if(static === motion){
 
+			count++;
+		}
+
+	}
+	if(count === num){
+
+		return true;
+
+	}
+	else{
+
+		return false;
+	}
+
+
+}
 
 //************************************************************************************************************************************
 //**** COUNTDOWN TIMER ***************************************************************************************************************
