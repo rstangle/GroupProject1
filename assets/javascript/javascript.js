@@ -299,7 +299,12 @@ function makeDrag_drop(){
 
 				if(isWin(rowsCol)){
 
-					$("#modalStart").modal("show");
+					stop();//stops timer
+					$("#modalStart").modal("show");//shows intitial modal for now
+					//other to-do's
+					//update heroes panels
+					//fetch next puzzle on continue click...
+
 				}
 				
 			}
@@ -313,7 +318,7 @@ function makeDrag_drop(){
 				var yours = dragged.children().attr("id");
 				var isRight = $(this).attr("grid-index"); 
 				console.log(isRight + " " + yours);
-				if($(this).children().length > 0 && (yours === isRight)){
+				if((yours === isRight)){
 					playSound();
 					$(droppedOn).children().detach().prependTo($(lastPlace));
 					$(dragged).detach().css({
