@@ -296,7 +296,7 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
-				playSound();
+				
 			}
 		});
 
@@ -309,7 +309,7 @@ function makeDrag_drop(){
 				var isRight = $(this).attr("grid-index"); 
 				console.log(isRight + " " + yours);
 				if($(this).children().length > 0 && (yours === isRight)){
-
+					playSound();
 					$(droppedOn).children().detach().prependTo($(lastPlace));
 					$(dragged).detach().css({
                			 top: 0,
