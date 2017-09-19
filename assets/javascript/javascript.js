@@ -339,24 +339,6 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
-				if(isWin(rowsCol)){
-
-					stop();//stops timer
-					$("#modalStart").modal("show");//shows intitial modal for now
-					//other to-do's
-					//update heroes panels
-					//fetch next puzzle on continue click...
-
-				}
-				else if(isLose(rowsCol)){
-
-					alert("you lose");
-				}
-				// else if(!isWin(rowsCol)){
-
-				// 		alert("you lose sucker");
-
-				// }
 				
 			}
 		});
@@ -371,7 +353,9 @@ function makeDrag_drop(){
 				var yours = dragged.children().attr("id");
 				var isRight = $(this).attr("grid-index"); 
 				console.log(isRight + " " + yours);
+
 				if((yours === isRight)){
+
 					playSound();
 					$(droppedOn).children().detach().prependTo($(lastPlace));
 					$(dragged).detach().css({
