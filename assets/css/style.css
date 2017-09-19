@@ -9,22 +9,10 @@ body {
 	background-position: center center;
 	background-attachment: fixed;
 	background-size: cover;
-	padding-bottom: 200px;
+	padding-bottom: 25px;
 }
 
-#leftside {
-	/*background-image: url("../assets/images/images/leftside.png");
-*/	/*background-color: black;*/
-/*	background-repeat: no-repeat;*/
-/*	background-position: center center;*/
-/*	background-attachment: fixed;*/
-/*	background-size: cover;*/
-/*	padding-bottom: 200px;*/
-	min-height: 1000px;
-	position: relative;
-	z-index: 90;
 
-}
 
 /*#background {
 	background-image: url("../assets/images/images/space3.jpg");
@@ -61,6 +49,7 @@ h1 {
 /*	float: left;*/
 	letter-spacing: 1px;
 	padding-left: 3%;
+	clear: both;
 }
 
 #main-menu-image {
@@ -286,6 +275,20 @@ h1 {
 	clear: both; 
 }
 
-.page-header {
+/*.page-header {
 	text-align: center;
+}*/
+
+.navbar-static-bottom {
+	padding: 20px 20px 40px 20px;
+	background: none;
+	color: white;
+	font-size: 10pt;
+	text-align: center;
+	border: 0px;
+	border-color: none;
+	margin: 100px auto 0px auto;
+	box-shadow: none;
+	font-family: 'Audiowide', cursive;
+	text-shadow: 2px 2px black;
 }
