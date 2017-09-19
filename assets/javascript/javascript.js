@@ -1,11 +1,23 @@
+// Initialize Firebase
+ var config = {
+   		 apiKey: "AIzaSyD5itEBcOOdHdt4ODe-UHnToWG3IvCIFA0",
+   		 authDomain: "marvel-puzzle-challenge.firebaseapp.com",
+    	 databaseURL: "https://marvel-puzzle-challenge.firebaseio.com",
+   	     projectId: "marvel-puzzle-challenge",
+  	     storageBucket: "marvel-puzzle-challenge.appspot.com",
+ 	     messagingSenderId: "875201813648"
+ };
 
+firebase.initializeApp(config);
+
+var database = firebase.database();
 
 var soundID = "Thunder";
 var backgroundMusic = "M-GameBG";
 
 var heroImage = ["cyclops (x-men: battle of the atom)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
 var number = 0;
-var randomHeros = ["", "", ""];
+var randomHeros = [];
 
 var pieceW = 300;
 var pieceH = 450;
@@ -13,6 +25,20 @@ var rowsCol;
 var win;
 var dropped;
 var indexARR = [];
+
+function loadHeros(){
+
+	for(var i=0; i<3; i++){
+
+		var x = Math.floor(Math.random()*heroImage.length);
+		while(randomHeros.indexOf(heroImage[x]) === -1){
+
+			randomHeros.push(heroImage[x]);
+		}
+
+	}
+	console.log(randomHeros);
+}
 
 //Loads sound from Create JS
 function loadSound () {
@@ -34,8 +60,16 @@ window.onload = function() {
 	// but not sure if it is needed there or if it actually working there. Removed from Body tag in HTML and still works.
 	loadSound(); // Will try the loadSounds() for multiple sounds as well.
 	playAudio();
+	loadHeros();
 };
+$("#start").on("click", function(){
 
+	//call video modal
+
+	// $("#modalRules").modal("show");
+	 setTimeout(modalcontrol, 1000);
+
+});
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
 	$("#main-menu-image").hide();
@@ -71,14 +105,15 @@ $(".mybtn").on("click", function(){
 	makeDrag_drop();
 	// $(".difficulty").hide();
 	playSound();
-	callImage();
+	callImage(randomHeros[0]);
+	randomHeros.splice(0,1);
 	run();
 });
 
-function callImage(){
+function callImage(heroName){
 
 	var queryURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+
-	"captain america"+"&apikey="+
+	heroName+"&apikey="+
 	"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
 
 	var img = $("<img>").attr("id", "myImage");
@@ -111,7 +146,8 @@ function createDroppables_Draggables(num, w, h){
 
 	for(var i = 0; i<num; i++){
 		var id = i.toString();
-		var drop = $("<div>").addClass("drop").attr("grid-index", i).attr("id", "drop"+id);
+		var drop = $("<div>").addClass("drop").attr("grid-index", i);
+		drop.attr("id", "drop"+id);
 		drop.css({float: "left", background: "none", width: w, height: h, position: "relative"});
 		var drag = $("<div>").addClass("drag").attr("id", "drag"+id);
 		drag.css({float: "left", background: "#dddddd", width: w, height: h,"z-index": 3});
@@ -281,6 +317,12 @@ function shuffleArr(num){
  	}
  	console.log(indexARR);
 }
+
+function modalcontrol(){
+	$("#modalRules").modal("hide");
+	$("#modalStart").modal("show");
+}
+
 function makeDrag_drop(){
 		var lastPlace;
 
@@ -306,9 +348,20 @@ function makeDrag_drop(){
 					//fetch next puzzle on continue click...
 
 				}
+				else if(isLose(rowsCol)){
+
+					alert("you lose");
+				}
+				// else if(!isWin(rowsCol)){
+
+				// 		alert("you lose sucker");
+
+				// }
 				
 			}
 		});
+
+
 
 		$(".drop").droppable({
 			drop: function(event, ui){
@@ -341,18 +394,43 @@ function isWin(num){
 		}
 
 	}
-	if(count === num){
+	if(count === num && number>0){
 
 		return true;
 
 	}
-	else{
+	// else {
 
-		return false;
-	}
+	// 	return false;
+	// }
 
 
 }
+
+function isLose(num){
+	var count = 0;
+	for(var i=0; i < num; i++){
+		var id = i.toString();
+		var static= $("#drop"+id).attr("grid-index");
+		var motion= $("#drop"+id).children().children().attr("id");
+		if(static === motion){
+
+			count++;
+		}
+
+	}
+	if( number === 0 && count != num){
+
+		return true;
+	}
+	// else{
+
+	// 	return false;
+	// }
+
+}
+
+// var text = $("<p>"+"True believers....."+"<br><br>"+"a bunch of text"+"</p>");
 
 //************************************************************************************************************************************
 //**** COUNTDOWN TIMER ***************************************************************************************************************
@@ -389,6 +467,19 @@ function isWin(num){
         $("#timer").css("color", "red").html("<h1>0</h1>");
         // wrong++;
       }
+      if(isWin(rowsCol)){
+
+					stop();//stops timer
+					$("#modalStart").modal("show");//shows intitial modal for now
+					//other to-do's
+					//update heroes panels
+					//fetch next puzzle on continue click...
+
+		}
+		else if(isLose(rowsCol)){
+
+					alert("you lose");
+		}
     }
 
     function stop() {
@@ -416,3 +507,20 @@ function isWin(num){
 	function pauseAudio() {
 		audio.pause();
 	}
+// *******************************************
+// ******Next FOR CONTINUITY*****************
+// *******************************************
+//not done yet
+function getNext(){
+
+	indexARR =[];
+	$(".grid").empty();
+	if(rowsCol === 9){
+
+		number = 20;
+
+
+	}
+
+
+} 
