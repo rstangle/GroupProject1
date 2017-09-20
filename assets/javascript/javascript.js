@@ -66,7 +66,7 @@ $("#start").on("click", function(){
 
 	//call video modal
 
-	// $("#modalRules").modal("show");
+	$("#startCinematic").modal("show");
 	 setTimeout(modalcontrol, 1000);
 
 });
@@ -454,7 +454,7 @@ function isLose(num){
       if(isWin(rowsCol)){
 
 					stop();//stops timer
-					$("#modalStart").modal("show");//shows intitial modal for now
+					$("#modalIntergame").modal("show");//shows intitial modal for now
 					//other to-do's
 					//update heroes panels
 					//fetch next puzzle on continue click...
