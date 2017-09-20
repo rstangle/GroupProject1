@@ -11,16 +11,13 @@
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
 var soundID = "Thunder";
 var EFX1 = "ButtonDrop";
 var EFX2 = "SWISH";
 var backgroundMusic = "M-GameBG";
-
 var heroImage = ["cyclops (x-men: battle of the atom)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
 var number = 0;
 var randomHeros = [];
-
 var pieceW = 300;
 var pieceH = 450;
 var rowsCol;
@@ -111,6 +108,7 @@ $(".mybtn").on("click", function(){
 	playSound(soundID);
 	callImage(randomHeros[0]);
 	randomHeros.splice(0,1);
+	console.log(randomHeros);
 	run();
 });
 
@@ -467,11 +465,13 @@ function isLose(num){
 					//other to-do's
 					//update heroes panels
 					//fetch next puzzle on continue click...
+					getNext();
 
 		}
 		else if(isLose(rowsCol)){
 
 					alert("you lose");
+					getNext();
 		}
     }
 
@@ -512,8 +512,25 @@ function getNext(){
 
 		number = 20;
 
+	}
+	else if (rowsCol === 16){
+
+		number = 45;
 
 	}
+	else if(rowsCol === 25){
+
+		number = 90;
+
+	}
+	createDroppables_Draggables(rowsCol, pieceW, pieceH);
+	makeDrag_drop();
+	// $(".difficulty").hide();
+	playSound(soundID);
+	console.log(randomHeros);
+	callImage(randomHeros[0]);
+	randomHeros.splice(0,1);
+	run();
 
 
 } 
