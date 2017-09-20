@@ -62,14 +62,18 @@ window.onload = function() {
 	playAudio();
 	loadHeros();
 };
+
 $("#start").on("click", function(){
 
 	//call video modal
-
+	pauseAudio();
 	$("#startCinematic").modal("show");
-	 setTimeout(modalcontrol, 1000);
+	setTimeout(modalcontrol, 26000);
 
 });
+
+
+
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
 	$("#main-menu-image").hide();
@@ -105,8 +109,10 @@ $(".mybtn").on("click", function(){
 	makeDrag_drop();
 	// $(".difficulty").hide();
 	playSound();
+	console.log(randomHeros);
 	callImage(randomHeros[0]);
 	randomHeros.splice(0,1);
+	console.log(randomHeros);
 	run();
 });
 
@@ -321,6 +327,7 @@ function shuffleArr(num){
 function modalcontrol(){
 	$("#modalRules").modal("hide");
 	$("#modalStart").modal("show");
+	$("#startCinematic").modal("hide");
 }
 
 function makeDrag_drop(){
@@ -477,21 +484,21 @@ function isLose(num){
 		// $("#question-area").show();
 		run();
 	}
-//**** YouTube Video Functions **************************************************************************
-	var player;
-	function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
-	    height: '390',
-	    width: '640',
-	    autoplay: 1,
-	    controls: 0,
-	  });
-	}
+// //**** YouTube Video Functions **************************************************************************
+// 	var player;
+// 	function onYouTubeIframeAPIReady() {
+// 		player = new YT.Player('player', {
+// 	    height: '390',
+// 	    width: '640',
+// 	    autoplay: 1,
+// 	    controls: 0,
+// 	  });
+// 	}
 
 
-	player.loadVideoById({videoId: 'rmznTYTPINc',
-                      startSeconds:0,
-                      endSeconds:25});
+// 	player.loadVideoById({videoId: 'rmznTYTPINc',
+//                       startSeconds:0,
+//                       endSeconds:25});
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
