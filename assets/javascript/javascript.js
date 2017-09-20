@@ -70,7 +70,7 @@ $("#start").on("click", function(){
 
 	//call video modal
 
-	// $("#modalRules").modal("show");
+	$("#startCinematic").modal("show");
 	 setTimeout(modalcontrol, 1000);
 
 });
@@ -463,7 +463,7 @@ function isLose(num){
       if(isWin(rowsCol)){
 
 					stop();//stops timer
-					$("#modalStart").modal("show");//shows intitial modal for now
+					$("#modalIntergame").modal("show");//shows intitial modal for now
 					//other to-do's
 					//update heroes panels
 					//fetch next puzzle on continue click...
@@ -486,6 +486,21 @@ function isLose(num){
 		// $("#question-area").show();
 		run();
 	}
+//**** YouTube Video Functions **************************************************************************
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+	    height: '390',
+	    width: '640',
+	    autoplay: 1,
+	    controls: 0,
+	  });
+	}
+
+
+	player.loadVideoById({videoId: 'rmznTYTPINc',
+                      startSeconds:0,
+                      endSeconds:25});
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
