@@ -1,3 +1,4 @@
+$(".page-header").hide();
 var database = firebase.database();
 var userRef = database.ref("user");
 var currentHero;
@@ -15,10 +16,41 @@ var randomHeros = [];
 var pieceW = 300;
 var pieceH = 450;
 var rowsCol;
-var win;
-var dropped;
 var indexARR = [];
 var timeOut;
+var currentUser;
+$("#anonymous").on("click", function(){
+
+	firebase.auth().signInAnonymously().catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+
+
+});
+
+firebase.auth().onAuthStateChanged(function(user){
+
+	if(user.isAnonymous){
+
+		currentUser = "anonymous";
+		console.log(currentUser);
+		$(".page-header").show();
+		$("#auth").hide();
+
+	}else if(user.displayName){
+
+		currentUser = user.displayName;
+		console.log(currentUser);
+		$("#auth").hide();
+		$(".page-header").show();
+	}
+
+
+});
 function createImageDiv(panel){
 
 	var img = $("<div>").css({"width": "100px", "height": "150px", 

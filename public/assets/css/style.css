@@ -24,7 +24,11 @@ body {
 	display: block;
 	clear: both;
 }
+#anonymous{
 
+	position:relative;
+	left:167px;
+}
 /*#background {
 	background-image: url("../assets/images/images/space3.jpg");
 	background-color: black;
