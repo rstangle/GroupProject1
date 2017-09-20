@@ -34,7 +34,6 @@ window.onload = function() {
 	// but not sure if it is needed there or if it actually working there. Removed from Body tag in HTML and still works.
 	loadSound(); // Will try the loadSounds() for multiple sounds as well.
 	playAudio();
-};
 
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
