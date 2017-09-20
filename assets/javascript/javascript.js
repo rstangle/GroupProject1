@@ -85,10 +85,10 @@ window.onload = function() {
 	loadHeros();
 
 };
+
 $("#start").on("click", function(){
 
 	//call video modal
-
 	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=25&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 	$("#startCinematic").modal("show");
 	$("startCinematic").on("shown.bs.modal", function(){
@@ -102,9 +102,6 @@ $("#start").on("click", function(){
 		$("#ytplayer").attr("src", "");
 		modalcontrol();
 	});
-	 
-
-
 });
 
 $(".mybtn").on("click", function(){
@@ -141,7 +138,9 @@ $(".mybtn").on("click", function(){
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
 	makeDrag_drop();
 	// $(".difficulty").hide();
+
 	playSound(soundID);
+
 	callImage(randomHeros[0]);
 	userRef.set({
 
@@ -604,6 +603,7 @@ function isLose(num){
 		// $("#question-area").show();
 		run();
 	}
+
 //**** YouTube Video Functions **************************************************************************
 	// var player;
 	// function onYouTubeIframeAPIReady() {
@@ -619,6 +619,7 @@ function isLose(num){
 	// player.loadVideoById({videoId: 'rmznTYTPINc',
  //                      startSeconds:0,
  //                      endSeconds:25});
+
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
