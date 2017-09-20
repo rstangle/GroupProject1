@@ -12,7 +12,18 @@ body {
 	padding-bottom: 25px;
 }
 
+#saved:after {
 
+	content: " ";
+	display: block;
+	clear: both;
+}
+#lost:after {
+
+	content: " ";
+	display: block;
+	clear: both;
+}
 
 /*#background {
 	background-image: url("../assets/images/images/space3.jpg");
