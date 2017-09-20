@@ -13,6 +13,8 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var soundID = "Thunder";
+var EFX1 = "ButtonDrop";
+var EFX2 = "SWISH";
 var backgroundMusic = "M-GameBG";
 
 var heroImage = ["cyclops (x-men: battle of the atom)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
@@ -44,11 +46,13 @@ function loadHeros(){
 function loadSound () {
   createjs.Sound.registerSound("assets/sounds/Thunder1.mp3", soundID);
 //   createjs.Sound.registerSound("M-GameBG.mp3", soundID);
+	createjs.Sound.registerSound("assets/sounds/G1_FX_DashboardClick.mp3", EFX1);
+	createjs.Sound.registerSound("assets/sounds/G2_FX_ClickWrong.mp3", EFX2);
 }
 
 //Plays sound from Create JS
-function playSound () {
-  createjs.Sound.play(soundID);
+function playSound (Sound) {
+  createjs.Sound.play(Sound);
   // createjs.Sound.play(backgroundMusic);
 }
 
@@ -104,7 +108,7 @@ $(".mybtn").on("click", function(){
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
 	makeDrag_drop();
 	// $(".difficulty").hide();
-	playSound();
+	playSound(soundID);
 	callImage(randomHeros[0]);
 	randomHeros.splice(0,1);
 	run();
@@ -339,6 +343,7 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
+
 				
 			}
 		});
@@ -356,12 +361,16 @@ function makeDrag_drop(){
 
 				if((yours === isRight)){
 
-					playSound();
+					playSound(EFX1);
 					$(droppedOn).children().detach().prependTo($(lastPlace));
 					$(dragged).detach().css({
                			 top: 0,
                 		 left: 0
            			 }).prependTo($(droppedOn));
+				}
+				else{
+
+					playSound(EFX2);
 				}
 			}
 		});
