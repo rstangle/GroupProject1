@@ -477,6 +477,21 @@ function isLose(num){
 		// $("#question-area").show();
 		run();
 	}
+//**** YouTube Video Functions **************************************************************************
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+	    height: '390',
+	    width: '640',
+	    autoplay: 1,
+	    controls: 0,
+	  });
+	}
+
+
+	player.loadVideoById({videoId: 'rmznTYTPINc',
+                      startSeconds:0,
+                      endSeconds:25});
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
