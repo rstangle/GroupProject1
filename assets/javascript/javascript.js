@@ -14,6 +14,9 @@ var database = firebase.database();
 var userRef = database.ref("user");
 var currentHero;
 var imgURL;
+var saves;
+var losses;
+var game;
 var soundID = "Thunder";
 var EFX1 = "ButtonDrop";
 var EFX2 = "SWISH";
@@ -35,6 +38,7 @@ function createImageDiv(panel){
 							"background-size": "cover",
 							margin:"3px"});
 	img.appendTo("#"+panel);
+
 }
 function loadHeros(){
 
@@ -52,7 +56,9 @@ function loadHeros(){
 userRef.on("value", function(snap){
 
 	currentHero = snap.val().currentHero;
-
+	saves = snap.val().saves;
+	losses = snap.val().losses;
+	console.log(saves+" "+losses);
 });
 //Loads sound from Create JS
 function loadSound () {
@@ -139,6 +145,9 @@ $(".mybtn").on("click", function(){
 	userRef.set({
 
 		currentHero: randomHeros[0],
+		saves: 0,
+		losses: 0,
+		game: 1,
 
 	});
 	randomHeros.splice(0,1);
@@ -181,7 +190,11 @@ $("#continue").on("click", function(){
 	getNext();
 
 });
+// $("#modalIntergame").on("hidden.bs.modal", function(){
 
+// 	getNext();
+
+// });
 function callImage(heroName){
 
 	var queryURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+
@@ -536,26 +549,46 @@ function isLose(num){
 					$("#modalIntergame").modal("show");//shows intitial modal for now
 					console.log(userRef);
 					createImageDiv("saved");
+					userRef.transaction(function(user){
+
+						user.saves++;
+						return user;
+					})
 					
 
 		}
 		else if(isLose(rowsCol) && randomHeros.length > 0){
 
-
+					
 					$("#modalIntergame").modal("show");
 					createImageDiv("lost");
+					userRef.transaction(function(user){
+
+						user.losses++;
+						return user;
+					})
 		}
 		else if(isWin(rowsCol) && randomHeros.length === 0){
-			alert("game is done");
-			$("#saved").append($("<p>"+currentHero+"</p>"));
+			
+			createImageDiv("saved");
+			userRef.transaction(function(user){
+
+						user.saves++;
+						return user;
+			});
 			//show last modal
-			//append heros lost and saved
+			 stop();
 
 		}
 		else if(isLose(rowsCol) && randomHeros.length === 0){
+			
+			createImageDiv("lost");
+			userRef.transaction(function(user){
 
-			alert("game is done");
-			$("#lost").append($("<p>"+currentHero+"</p>"));
+						user.losses++;
+						return user;
+			});
+			 stop();
 		}
     }
 
@@ -599,6 +632,7 @@ function isLose(num){
 	function pauseAudio() {
 		audio.pause();
 	}
+
 // *******************************************
 // ******Next FOR CONTINUITY*****************
 // *******************************************
@@ -628,11 +662,12 @@ function getNext(){
 	playSound(soundID);
 	console.log(randomHeros);
 	callImage(randomHeros[0]);
-	userRef.set({
+	userRef.update({
 
 		currentHero: randomHeros[0],
 
 	});
+	
 	randomHeros.splice(0,1);
 	run();
 	}
