@@ -62,13 +62,14 @@ window.onload = function() {
 	loadSound(); // Will try the loadSounds() for multiple sounds as well.
 	playAudio();
 	loadHeros();
+
 };
 $("#start").on("click", function(){
 
 	//call video modal
 
 	// $("#modalRules").modal("show");
-	 setTimeout(modalcontrol, 1000);
+	 modalcontrol();
 
 });
 $(".mybtn").on("click", function(){
