@@ -62,6 +62,32 @@
 
 		<!-- STATIC MODAL TRIAL -->
 
+		<!-- Modal for YouTube -->
+		<div class="modal fade" id="startCinematic" role="dialog">
+		    <div class="modal-dialog">
+				    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		        	<!-- 16:9 aspect ratio -->
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe id="ytplayer" type="text/html" width="640" height="360" 
+						src="https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=25&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com" 
+						frameborder="0"></iframe>
+					</div>
+
+		        </div>
+		        
+		     </div>
+						      
+		   </div>
+		</div>
+
+
+
 		<!-- Modal for Start Button -->
 		<div class="modal fade" id="modalStart" role="dialog">
 		    <div class="modal-dialog">
@@ -115,6 +141,31 @@
 
 		        </div>
 		        
+		     </div>
+						      
+		   </div>
+		</div>
+
+		<!-- Modal for Intergame Win screen -->
+		<div class="modal fade" id="modalIntergame" role="dialog">
+		    <div class="modal-dialog">
+				    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">....<!-- Cogratulations!<br>You Saved a Hero! --></h4>
+		        </div>
+		        <div class="modal-body">
+		          <button id="continue" type="button" class="btn btn-success" data-dismiss="modal">Continue to Next Round</button>
+		        </div>
+		        <div class="modal-footer">
+					<h3>Change Difficulty Level <i>(Optional)</i></h3>	        	
+					<button type="button" class="next btn btn-success" data-dismiss="modal" data-value="3">Easy</button>
+					<button type="button" class="next btn btn-warning" data-dismiss="modal" data-value="4">Medium</button>
+					<button type="button" class="next btn btn-danger" data-dismiss="modal" data-value="5">Hard</button>
+							
+		        </div>
 		     </div>
 						      
 		   </div>
