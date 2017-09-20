@@ -11,6 +11,9 @@
 firebase.initializeApp(config);
 
 var database = firebase.database();
+var userRef = database.ref("user");
+var currentHero;
+var imgURL;
 var soundID = "Thunder";
 var EFX1 = "ButtonDrop";
 var EFX2 = "SWISH";
@@ -24,7 +27,15 @@ var rowsCol;
 var win;
 var dropped;
 var indexARR = [];
+var timeOut;
+function createImageDiv(panel){
 
+	var img = $("<div>").css({"width": "100px", "height": "150px", 
+							background: "url("+imgURL+")", 
+							"background-size": "cover",
+							margin:"3px"});
+	img.appendTo("#"+panel);
+}
 function loadHeros(){
 
 	for(var i=0; i<3; i++){
@@ -38,13 +49,16 @@ function loadHeros(){
 	}
 	console.log(randomHeros);
 }
+userRef.on("value", function(snap){
 
+	currentHero = snap.val().currentHero;
+
+});
 //Loads sound from Create JS
 function loadSound () {
   createjs.Sound.registerSound("assets/sounds/Thunder1.mp3", soundID);
-//   createjs.Sound.registerSound("M-GameBG.mp3", soundID);
-	createjs.Sound.registerSound("assets/sounds/G1_FX_DashboardClick.mp3", EFX1);
-	createjs.Sound.registerSound("assets/sounds/G2_FX_ClickWrong.mp3", EFX2);
+  createjs.Sound.registerSound("assets/sounds/G1_FX_DashboardClick.mp3", EFX1);
+  createjs.Sound.registerSound("assets/sounds/G2_FX_ClickWrong.mp3", EFX2);
 }
 
 //Plays sound from Create JS
@@ -68,12 +82,24 @@ $("#start").on("click", function(){
 
 	//call video modal
 
-
+	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=25&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 	$("#startCinematic").modal("show");
-	 setTimeout(modalcontrol, 26000);
+	$("startCinematic").on("shown.bs.modal", function(){
+
+		timeOut = setTimeout(modalcontrol, 26500);
+
+	});
+	$("#startCinematic").on("hidden.bs.modal", function(){
+
+		clearTimeout(timeOut);
+		$("#ytplayer").attr("src", "");
+		modalcontrol();
+	});
+	 
 
 
 });
+
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
 	$("#main-menu-image").hide();
@@ -110,9 +136,50 @@ $(".mybtn").on("click", function(){
 	// $(".difficulty").hide();
 	playSound(soundID);
 	callImage(randomHeros[0]);
+	userRef.set({
+
+		currentHero: randomHeros[0],
+
+	});
 	randomHeros.splice(0,1);
 	console.log(randomHeros);
 	run();
+});
+
+$(".next").on("click", function(){
+
+	pieceW = 300;
+	pieceH = 450;
+
+	if($(this).attr("data-value") === "3"){
+
+		pieceW = Math.ceil(pieceW * (33/100));
+		pieceH = Math.ceil(pieceH * (33/100));
+		rowsCol = 3*3;
+		number = 20;
+	}
+	else if($(this).attr("data-value") === "4"){
+
+		pieceW = Math.ceil(pieceW * (25/100));
+		pieceH = Math.ceil(pieceH * (25/100));
+		rowsCol = 4*4;
+		number = 45;
+	}
+	else{
+
+		pieceW = Math.ceil(pieceW * (20/100));
+		pieceH = Math.ceil(pieceH * (20/100));
+		rowsCol = 5*5;
+		number = 90;
+	}
+	console.log(rowsCol);
+	getNext();
+
+});
+$("#continue").on("click", function(){
+
+	getNext();
+
 });
 
 function callImage(heroName){
@@ -124,7 +191,7 @@ function callImage(heroName){
 	var img = $("<img>").attr("id", "myImage");
 	var imgPath;
 	var imgExt;
-	var imgURL;
+	// var imgURL;
 
 	$.ajax({
 
@@ -324,8 +391,9 @@ function shuffleArr(num){
 }
 
 function modalcontrol(){
-	$("#modalRules").modal("hide");
+	
 	$("#modalStart").modal("show");
+	$("#startCinematic").modal("hide");
 }
 
 function makeDrag_drop(){
@@ -338,6 +406,7 @@ function makeDrag_drop(){
 			snap:".drop",
 			snapMode: "inner",
 			snapTolerance: 40,
+			containment: ".grid",
 			start: function(event, ui){
 
 				lastPlace = $(this).parent();
@@ -461,20 +530,32 @@ function isLose(num){
         $("#timer").css("color", "red").html("<h1>0</h1>");
         // wrong++;
       }
-      if(isWin(rowsCol)){
+      if(isWin(rowsCol) && randomHeros.length > 0){
 
 					stop();//stops timer
 					$("#modalIntergame").modal("show");//shows intitial modal for now
-					//other to-do's
-					//update heroes panels
-					//fetch next puzzle on continue click...
-					getNext();
+					console.log(userRef);
+					createImageDiv("saved");
+					
 
 		}
-		else if(isLose(rowsCol)){
+		else if(isLose(rowsCol) && randomHeros.length > 0){
 
-					alert("you lose");
-					getNext();
+
+					$("#modalIntergame").modal("show");
+					createImageDiv("lost");
+		}
+		else if(isWin(rowsCol) && randomHeros.length === 0){
+			alert("game is done");
+			$("#saved").append($("<p>"+currentHero+"</p>"));
+			//show last modal
+			//append heros lost and saved
+
+		}
+		else if(isLose(rowsCol) && randomHeros.length === 0){
+
+			alert("game is done");
+			$("#lost").append($("<p>"+currentHero+"</p>"));
 		}
     }
 
@@ -490,20 +571,20 @@ function isLose(num){
 		run();
 	}
 //**** YouTube Video Functions **************************************************************************
-	var player;
-	function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
-	    height: '390',
-	    width: '640',
-	    autoplay: 1,
-	    controls: 0,
-	  });
-	}
+	// var player;
+	// function onYouTubeIframeAPIReady() {
+	// 	player = new YT.Player('player', {
+	//     height: '390',
+	//     width: '640',
+	//     autoplay: 1,
+	//     controls: 0,
+	//   });
+	// }
 
 
-	player.loadVideoById({videoId: 'rmznTYTPINc',
-                      startSeconds:0,
-                      endSeconds:25});
+	// player.loadVideoById({videoId: 'rmznTYTPINc',
+ //                      startSeconds:0,
+ //                      endSeconds:25});
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
@@ -523,7 +604,7 @@ function isLose(num){
 // *******************************************
 //not done yet
 function getNext(){
-
+	if(randomHeros.length > 0){
 	indexARR =[];
 	$(".grid").empty();
 	if(rowsCol === 9){
@@ -547,8 +628,13 @@ function getNext(){
 	playSound(soundID);
 	console.log(randomHeros);
 	callImage(randomHeros[0]);
+	userRef.set({
+
+		currentHero: randomHeros[0],
+
+	});
 	randomHeros.splice(0,1);
 	run();
-
-
+	}
+	
 } 
