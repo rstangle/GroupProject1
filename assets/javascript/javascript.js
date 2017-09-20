@@ -36,7 +36,8 @@ function createImageDiv(panel){
 	var img = $("<div>").css({"width": "100px", "height": "150px", 
 							background: "url("+imgURL+")", 
 							"background-size": "cover",
-							margin:"3px"});
+							margin:"3px", float: "left"});
+	img.append($("<p>"+currentHero+"</p>").css("color", "white"));
 	img.appendTo("#"+panel);
 
 }
