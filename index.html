@@ -17,8 +17,39 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Amarante|Anton|Audiowide|Black+Ops+One|Bowlby+One|Open+Sans+Condensed:300" rel="stylesheet">
 	<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+	<script type="text/javascript">
+		var config = {
+   		 apiKey: "AIzaSyD5itEBcOOdHdt4ODe-UHnToWG3IvCIFA0",
+   		 authDomain: "marvel-puzzle-challenge.firebaseapp.com",
+    	 databaseURL: "https://marvel-puzzle-challenge.firebaseio.com",
+   	     projectId: "marvel-puzzle-challenge",
+  	     storageBucket: "marvel-puzzle-challenge.appspot.com",
+ 	     messagingSenderId: "875201813648"
+ 		};
+
+		firebase.initializeApp(config);
+	</script>
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+     <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'GroupProject1/index.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+         
+          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+         
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
 </head>
 <body>
 		
@@ -179,7 +210,7 @@
 							  <h1 class="main-menu-title">Marvel Puzzle <br> Challenge <br>
 							  <p></p>
 							  <small class="sub-menu">Do you have what it takes to save<br>Earth's Mightiest Heros?</small></h1> <br>
-							
+							  <div id="firebaseui-auth-container"></div>
 					  <!-- <h2>Welcome to Marvel Puzzle Challenge</h2> -->
 					  <!-- Trigger the modal with a button -->
 							  <button id="start" type="button" class="btn btn-info btn-lg">Start</button><br>
@@ -241,14 +272,14 @@
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES SAVED</h3>
 						  </div>
-						  <div class="panel-body" id="saved">saved hero image here</div>
+						  <div class="panel-body" id="saved"></div>
 						</div>
 						
 						<div id="lost" class="panel panel-danger">
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES LOST</h3>
 						  </div>
-						  <div class="panel-body" id="lost">lost hero image here</div>
+						  <div class="panel-body" id="lost"></div>
 						</div>
 					</div>
 
