@@ -55,6 +55,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		$(".page-header").show();
 		$("#auth").hide();
 		userRef = database.ref(currentUser);
+
 	}else if(user.displayName){
 
 		currentUser = user.displayName;
@@ -63,6 +64,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		$(".page-header").show();
 		userRef = database.ref(currentUser);
 	}
+
 userRef.on("value", function(snap){
 
 
@@ -140,9 +142,9 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 		console.log("hidden");
 		clearTimeout(timeOut);
 		$("#ytplayer").attr("src", "");
-		if(randomHeros.length === 0){
+		if(randomHeros.length <= 0){
 				
-				resetAll();
+				getNext();
 	
 		}
 		modalcontrol();
@@ -286,6 +288,7 @@ function createDroppables_Draggables(num, w, h){
 
 }
 function createImgPieces(){
+	console.log(rowsCol);
 	shuffleArr(rowsCol);
 	var canvas;
 	var ctx;
@@ -454,18 +457,7 @@ function modalcontrol(){
 	
 	
 }
-function resetAll(){
 
-	
-	
-	// userRef.transaction(function(user){
-
-	// 	return user.game++;
-
-	// });
-	
-
-}
 function makeDrag_drop(){
 		var lastPlace;
 
@@ -497,7 +489,7 @@ function makeDrag_drop(){
 				var droppedOn = this;
 				var yours = dragged.children().attr("id");
 				var isRight = $(this).attr("grid-index"); 
-				console.log(isRight + " " + yours);
+				// console.log(isRight + " " + yours);
 
 				if((yours === isRight)){
 
@@ -605,7 +597,7 @@ function decrement() {
 
 					
 					$("#modalIntergame").modal("show");//shows intitial modal for now
-					console.log(userRef);
+					// console.log(userRef.currentUser);
 					createImageDiv("saves");
 					userRef.transaction(function(user){
 
@@ -656,14 +648,6 @@ function decrement() {
     function stop() {
       clearInterval(intervalId);
     }
-
-    function reset() {
-    	number = 0;
-		$("#timer").html(number);
-		// $("#stats").hide();
-		// $("#question-area").show();
-		run();
-	}
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
@@ -718,11 +702,13 @@ function getNext(){
 	randomHeros.splice(0,1);
 	run();
 	}
-	else{
+	else if( randomHeros.length <= 0 ){
 
 	pieceW = 300;
 	pieceH = 450;
 	randomHeros = [];
+	indexARR = [] ;
+	$(".grid").empty();
 	loadHeros();
 	console.log(randomHeros);
 	// userRef.update({
@@ -731,9 +717,6 @@ function getNext(){
 	// 	losses: 0,
 		
 	// });
-
-	getNext();
-
 	}
 	
 } 
