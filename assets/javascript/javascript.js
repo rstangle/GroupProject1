@@ -59,26 +59,23 @@ if(user){
 
 		currentUser = user.uid;
 		console.log(currentUser);
-		$(".page-header").show();
-		$("#main-menu-image").show();
-		$("#login").hide();
-		$("#auth").hide();
-		userRef = database.ref(currentUser);
-		userRef.onDisconnect().remove();
+		
 
 	}
 	else{
 
 		currentUser = user.displayName;
 		console.log(currentUser);
-		$(".page-header").show();
+
+		
+	}
+	$(".page-header").show();
 		$("#main-menu-image").show();
 		$("#login").hide();
 		$("#auth").hide();
-
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
-	}
+		console.log("THIS SECTION SEEN");
 }
 else{
 
