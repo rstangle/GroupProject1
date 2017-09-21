@@ -265,6 +265,10 @@ h1 {
 	text-align: center;
 }
 
+#saves {
+	padding: 5px;
+}
+
 .difficulty:after {
 	content: " ";
 	display: block;
