@@ -168,6 +168,13 @@ h1 {
 	clear: both;
 }
 
+#cinematic-modal {
+	background-color: black;
+/*	width: 1200px;
+	height: 100%;
+	text-align: center;*/
+}
+
 .wrapper {
 	position: relative;
 	text-align: center;

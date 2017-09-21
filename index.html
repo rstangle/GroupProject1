@@ -68,10 +68,8 @@
 		    <div class="modal-dialog">
 				    
 		      <!-- Modal content-->
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        </div>
+		      <div id="cinematic-modal" class="modal-content">
+
 		        <div class="modal-body">
 		        	<!-- 16:9 aspect ratio -->
 					<div class="embed-responsive embed-responsive-16by9">
@@ -100,7 +98,7 @@
 		        </div>
 		        <div class="modal-body">
 		          <img id="thanos" class="img-responsive" src="assets/images/images/thanos.png">
-		          <p>Thanos has imprisoned Earth's Mightiest Heros in the Mirror of Agamotto and scrambled the portal.  Can you help our heroes by solving the puzzles and stabalizing the portal?  <br><br>
+		          <p>Thanos has imprisoned Earth's Mightiest Heros in the Mirror of Agamotto and scrambled the portal. Can you help our heroes by solving the puzzles and stabalizing the portal?  <br><br>
 		          Help return Earth's Mightiest Heros so they can defeat Thanos before he conquers the Earth!</p>
 		        </div>
 		        <div class="modal-footer">
@@ -248,14 +246,18 @@
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES SAVED</h3>
 						  </div>
+
 						  <div class="panel-body" id="saves"></div>
+
 						</div>
 						
 						<div id="lost" class="panel panel-danger">
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES LOST</h3>
 						  </div>
+
 						  <div class="panel-body" id="losses"></div>
+
 						</div>
 					</div>
 
