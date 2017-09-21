@@ -84,11 +84,23 @@ userRef.on("value", function(snap){
 	currentHero = snap.val().currentHero;
 	saves = snap.val().saves;
 	losses = snap.val().losses;
-	game = snap.val().game;
 	console.log(saves+" "+losses);
 });
 
 });
+function compare(){
+
+	if(saves>losses){
+
+		//update final modal
+	}
+	else if(losses > saves){
+
+		//update final modal
+	}
+
+
+}
 function createImageDiv(panel){
 
 	var img = $("<div>").css({"width": "100px", "height": "150px", 
@@ -103,7 +115,7 @@ function loadHeros(){
 
 	for(var i=0; i<3; i++){
 
-		var x = Math.floor(Math.random()*heroImage.length);
+		var x = Math.floor(Math.random()*(heroImage.length-1)+1);
 		while(randomHeros.indexOf(heroImage[x]) === -1){
 
 			randomHeros.push(heroImage[x]);
@@ -152,20 +164,22 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		}
 
 	});
-	
+
 $("#startCinematic").on("hidden.bs.modal", function(){
 		console.log("hidden");
 		clearTimeout(timeOut);
 		playAudio();
 		$("#ytplayer").attr("src", "");
 		if(randomHeros.length <= 0){
-				
+				//show final modal
+				//get saved and lost numbers
 				getNext();
 	
 		}
 		modalcontrol();
 
 });
+//on final modal hide show startmodal??
 $("#modalStart").on("hidden.bs.modal", function(){
 
 	if(!$(".mybtn").data("clicked") && $(".grid").is(":empty")){
@@ -286,8 +300,11 @@ function callImage(heroName){
 		url: queryURL,
 		method: "GET"
 	}).done(function(response){
-
-		imgPath = response.data.results[0].thumbnail.path;
+		console.log(response);
+		var protocol = response.data.results[0].thumbnail.path.split(":");
+		protocol[0] = "https";
+		imgPath = protocol.join(":");
+		console.log(imgPath);
 		imgExt = response.data.results[0].thumbnail.extension;
 		imgURL = imgPath + "/portrait_uncanny." + imgExt;
 		img.attr("src", imgURL);
@@ -480,7 +497,7 @@ function shuffleArr(num){
 }
 
 function modalcontrol(){
-
+//control final modal 
 	$("#startCinematic").modal("hide");
 	$("#modalStart").modal("show");
 	
@@ -504,10 +521,8 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
-				userCount.transaction(function(count){
-
-					return count++;
-			});
+		
+		
 				
 			}
 		});
