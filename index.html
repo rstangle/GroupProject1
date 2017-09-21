@@ -6,42 +6,39 @@
 
 	<!-- BOOTSTRAP CDN -->
 	<!-- Latest compiled and minified CSS -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jcanvas/20.1.2/min/jcanvas.min.js"></script>
 	
 	<script type="text/javascript" src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 	<script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
+	
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Amarante|Anton|Audiowide|Black+Ops+One|Bowlby+One|Open+Sans+Condensed:300" rel="stylesheet">
 	<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css">
 </head>
-<body>
-		
-		<!-- <div id="leftside"></div> -->
-		<!-- <img id="leftside" src="../assets/images/images/leftside.png" alt="logo" class="img-rounded"> -->
-		
-			<!-- <img src="../assets/images/images/leftside.jpg" class="img-responsive" alt="Marvel Puzzle Challenge logo"> -->
 
-		<div id="background" class="container">
-			<!-- <div id="leftside"></div> -->
+<body>
+
+	<div id="background" class="container">
+		 	<!-- TOP MENU ROW -->
 		 	<div id="headline" class="row">
 				<div class="col-md-2"></div>
-		 			
+		 		<!-- LOGO -->	
 		 		<div class="col-md-3">
-					<div id="logo" class="img-responsive">					
-	<!-- 	  				<img src="../assets/images/logo.png" alt="logo" class="img-rounded"> -->
-					</div>
+					<div id="logo" class="img-responsive"></div>
 				</div>
 
+				<!-- GAME TITLE -->
 				<div class="col-md-5">
 					<h1>PUZZLE<br><span style="color: #f75b20">CHALLENGE</span></h1>
 				</div>
 
+				<!-- AUDIO CONTROLS -->
 				<div class="col-md-2">
 					<div id="audio-controls"> 
 						<p>Audio Controls</p>
@@ -52,21 +49,20 @@
 						<audio id="game-music" loop>
 					  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
 					 	</audio>
-				 	</div>
-				</div>
-			</div>	
 
-			<!-- <div class="jumbotron">
-				<img src="" class="img-responsive" alt="Marvel Puzzle Challenge logo">
-			</div> -->
+				 	</div><!--  CLOSES # AUDIO-CONTROLS -->
+				</div><!--  CLOSES AUDIO CONTROLS ROW -->
 
-		<!-- STATIC MODAL TRIAL -->
+			</div>	<!-- CLOSES THE TOP MENU ROW -->
 
-		<!-- Modal for YouTube -->
+<!-- ****************************************************************************************************************************************** -->
+<!-- ****************************************************************************************************************************************** -->
+
+		<!-- MODAL FOR YOUTUBE OPENING -->
 		<div class="modal fade" id="startCinematic" role="dialog">
 		    <div class="modal-dialog">
 				    
-		      <!-- Modal content-->
+		      <!-- MODAL CONTENT-->
 		      <div id="cinematic-modal" class="modal-content">
 
 		        <div class="modal-body">
@@ -76,12 +72,12 @@
 						frameborder="0"></iframe>
 					</div>
 
-		        </div>
+		        </div><!--  CLOSES MODAL-BODY -->
 		        
-		     </div>
+		     </div><!--  CLOSES CINEMATIC-MODAL -->
 						      
-		   </div>
-		</div>
+		   </div><!--  CLOSES MODAL-DIALOG -->
+		</div><!--  CLOSES MODAL FOR YOUTUBE OPENING -->
 
 
 
@@ -103,7 +99,7 @@
 		        <div class="modal-footer">
 						        	
 					
-					<button  type="button" class="mybtn btn btn-success" data-dismiss="modal" data-value="3">Easy</button>
+					<button  type="button" class="mybtn btn btn-info" data-dismiss="modal" data-value="3">Easy</button>
 					<button type="button" class="mybtn btn btn-warning" data-dismiss="modal" data-value="4">Medium</button>
 					<button type="button" class="mybtn btn btn-danger" data-dismiss="modal" data-value="5">Hard</button>
 
@@ -126,8 +122,8 @@
 		          <h4 class="modal-title">How to Play</h4>
 		        </div>
 		        <div class="modal-body">
-		          <p>True Believers will be given a random puzzle image that has been shuffled. Your goal is to put the pieces together in the correct order to rescue the hero. But don't take too long as you are racing the clock. If the clock reaches zero before you've solved the puzzle, the hero is lost. You will need to rescue three (3) heroes in order to defeat Thanos and safe Earth!<br><br>
-		          Upon the start of the game, you will pick a difficulty setting of Easy, Medium or Hard. When you place a piece in the correct position, you will hear a confirmation sound. If it is not placed in the correct location, the puzzle piece will return to its starting location.<br><br>
+		          <p>True Believers will be given a random puzzle image that has been shuffled. Your goal is to put the pieces together in the correct order to rescue the hero. But don't take too long as you are racing the clock. If the clock reaches zero before you've solved the puzzle, the hero is lost. You will need to rescue at least two (2) heroes in order to defeat Thanos and save Earth!<br><br>
+		          Upon the start of the game, you will pick a difficulty setting of Easy, Medium or Hard. When you place a puzzle piece in the correct location, you will hear a confirmation sound. If it is not placed in the correct location, the puzzle piece will return to its starting location.<br><br>
 		          <span style="font-size: 18px; color: #00C851;">Easy Setting:</span><br>
 		          You will have 20 seconds to solve a 9-piece puzzle.<br><br>
 		          <span style="font-size: 18px; color: #FF8800">Medium Setting:</span><br>
@@ -137,56 +133,59 @@
 		          Good Luck!</p>
 
 		        </div>
-		        
-		     </div>
-						      
+		     </div>	      
 		   </div>
 		</div>
 
-		<!-- Modal for Intergame Win screen -->
+		<!-- MODAL FOR INTERGAME WIN SCREEN -->
 		<div class="modal fade" id="modalIntergame" role="dialog">
 		    <div class="modal-dialog">
 				    
-		      <!-- Modal content-->
+		     <!--  MODAL CONTENT -->
 		      <div class="modal-content">
+		        
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		          <h4 class="modal-title">....<!-- Cogratulations!<br>You Saved a Hero! --></h4>
 		        </div>
+		        
 		        <div class="modal-body">
 		          <button id="continue" type="button" class="btn btn-success" data-dismiss="modal">Continue to Next Round</button>
 		        </div>
+		        
 		        <div class="modal-footer">
 					<h3>Change Difficulty Level <i>(Optional)</i></h3>	        	
-					<button type="button" class="next btn btn-success" data-dismiss="modal" data-value="3">Easy</button>
+					<button type="button" class="next btn btn-info" data-dismiss="modal" data-value="3">Easy</button>
 					<button type="button" class="next btn btn-warning" data-dismiss="modal" data-value="4">Medium</button>
 					<button type="button" class="next btn btn-danger" data-dismiss="modal" data-value="5">Hard</button>
 							
-		        </div>
-		     </div>
+		        </div><!--  CLOSES MODAL-FOOTER -->
+		     
+		     </div><!--  CLOSES MODAL CONTENT -->
 						      
-		   </div>
-		</div>
+		   </div><!--  CLOSES MODAL-DIALOG -->
+		</div><!--  CLOSES MODAL FOR INTERGAME WIN SCREEN -->
 
-		<!-- Button trigger modal -->
+		<!-- BUTTON TRIGGER MODAL -->
 			<div class="row">
 				<div class="col-md-3"></div>
+
 				<div class="col-md-6">
 						<div id="main-menu-image"></div>
 						<div class="page-header">
 							  <h1 class="main-menu-title">Marvel Puzzle <br> Challenge <br>
-							  <p></p>
+							  <p></p> <!-- Using the empty p tag as a space break. Line break was too much space -->
 							  <small class="sub-menu">Do you have what it takes to save<br>Earth's Mightiest Heros?</small></h1> <br>
-							
-					  <!-- <h2>Welcome to Marvel Puzzle Challenge</h2> -->
-					  <!-- Trigger the modal with a button -->
+							  <!-- Trigger the modal with a button -->
 							  <button id="start" type="button" class="btn btn-info btn-lg">Start</button><br>
 							  <button id="rules" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalRules">How to Play</button>
-
 						</div> <!-- closes page header div -->
+
 				</div> <!-- closes col-md-6 div -->
+
 				<div class="col-md-3"></div>
-			</div>
+			
+			</div><!--  CLOSES BUTTON TRIGGER MODAL ROW -->
 			  
 
 		<!-- END STATIC MODAL TRIAL -->
@@ -194,15 +193,9 @@
 <!-- ************************************************************************************************************************************************
 *******  MAIN GAME AREA  ***********************************************************************************************************************
 ************************************************************************************************************************************************ -->
-			
-			<!-- 	<div class="mytitle"><h1>Marvel Mania</h1></div>
-				<br> -->
 			<div class="row">
 				<!-- EMPTY COLUMN -->
 				<div class="col-md-3"></div>	
-				
-				<!-- EMPTY COLUMN -->
-				<!-- <div class="col-md-1"></div> -->
 
 				<!-- GAME BOARD AREA -->
 				<div class="col-md-4">
@@ -211,64 +204,41 @@
 						
 						<div id="frame">
 							<div class="puzzle-container">
-							<!-- 	<div class="difficulty"> -->
-							
-							<!-- 		<button class="playSound mybtn" data-value="3">Easy</button>
-									<button class="mybtn" data-value="4">Medium</button>
-									<button class="mybtn" data-value="5">Hard</button> -->
-
-							<!-- 	</div> -->
-								<div class="grid">
-									
-								</div>
-
+								<div class="grid"></div>
 							</div>
+
 							<div class="empty"></div>
-						
-						</div>
-					</div>
 
-				</div>
+						</div><!--   CLOSES #FRAME -->
+					</div><!--   CLOSES WRAPPER -->
+				</div><!-- CLOSES GAME BOARD AREA  -->
 
-				<!-- <div class="col-md-1"></div> -->
-
-				<!-- HERO SAVED PANEL -->
+				<!-- HERO SAVED/LOST PANEL -->
 				<div class="col-md-3">
 					<div id="score-panel">
 						<div id="saved" class="panel panel-info">
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES SAVED</h3>
 						  </div>
-						  
 						</div>
 						
 						<div id="lost" class="panel panel-danger">
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES LOST</h3>
 						  </div>
-						  
 						</div>
 					</div>
+				</div> <!-- CLOSES HERO SAVED/LOST PANEL  -->
 
-				</div>
+				<div class="col-md-2"></div>
 
-				<div class="col-md-2">
-<!-- 					<button onclick="playAudio()"  type="button" class="btn btn-primary btn-sm">Play Audio</button>
-					<button onclick="pauseAudio()" type="button" class="btn btn-primary btn-sm">Mute Audio</button>
-					
-					<audio id="game-music" loop>
-				  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
-				 	</audio> -->
-				</div>
+			</div><!--  CLOSES GAME AREA ROW -->
 
+	</div> <!-- CLOSES THE MAIN CONTAINER -->
 
-				<!-- <div class="col-md-3"></div> -->
-			</div>
-		</div>
-
-<!-- ************************************************************************************************************************************************
-*******  FOOTER  *******************************************************************************************************************************
-************************************************************************************************************************************************ -->
+<!-- 
+******  FOOTER OPEN  *****************************************************************************************************************************
+ -->
 	<nav class="navbar navbar-default navbar-static-bottom">
   		<div class="container">
     		We hope you enjoyed the game!<br>
@@ -278,12 +248,6 @@
  		</div>
 	</nav>
 	
-<!-- Music -->
-
-<!-- 
-		<audio id="game-music" loop>
-	  		<source src="assets/sounds/M-GameBG.mp3" type="audio/mpeg">
-	 	</audio> -->
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/javascript.js"></script>
