@@ -35,22 +35,22 @@ $("#anonymous").on("click", function(){
 	});
 
 });
-userCount.once("value", function(snap){
+// userCount.once("value", function(snap){
 
-	ctr = snap.val();
+// 	ctr = snap.val();
 
-});
+// });
 firebase.auth().onAuthStateChanged(function(user){
 
 	if(user.isAnonymous){
 
 
-		userCount.transaction(function(count){
+		// userCount.transaction(function(count){
 
-			return count++;
-		});
+		// 	return count++;
+		// });
 
-		currentUser = "anonymous"+ctr.toString();
+		currentUser = user.uid;
 		console.log(currentUser);
 		$(".page-header").show();
 		$("#auth").hide();
@@ -475,7 +475,10 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
+				userCount.transaction(function(count){
 
+					return count++;
+			});
 				
 			}
 		});
