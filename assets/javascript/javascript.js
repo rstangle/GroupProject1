@@ -1,7 +1,7 @@
 $(".page-header").hide();
 $(".modal").modal({
 	show: false,
-	backdrop: false,
+	//backdrop: false,
 });
 var database = firebase.database();
 var userRef = null;
