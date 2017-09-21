@@ -57,6 +57,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		currentUser = user.uid;
 		console.log(currentUser);
 		$(".page-header").show();
+		$("#main-menu-image").show();
 		$("#auth").hide();
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
@@ -74,6 +75,7 @@ firebase.auth().onAuthStateChanged(function(user){
 
 		$("#auth").show();
 		$(".page-header").hide();
+		$("#main-menu-image").hide();
 	}
 
 userRef.on("value", function(snap){
@@ -128,6 +130,7 @@ window.onload = function() {
 	$(".puzzle-container").hide();
 	$("#frame").hide();
 	$("#score-panel").hide();
+	$("#main-menu-image").hide();
 	// Had to add this here in order to get the thunder sound effect. Also added to the HTML body tag, 
 	// but not sure if it is needed there or if it actually working there. Removed from Body tag in HTML and still works.
 	loadSound(); // Will try the loadSounds() for multiple sounds as well.
