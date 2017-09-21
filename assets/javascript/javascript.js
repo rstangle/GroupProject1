@@ -75,6 +75,7 @@ if(user){
 		$("#main-menu-image").show();
 		$("#login").hide();
 		$("#auth").hide();
+
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
 	}
