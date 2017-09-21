@@ -1,6 +1,6 @@
 $(".page-header").hide();
 var database = firebase.database();
-var userRef = database.ref("user");
+var userRef = null;
 var currentHero;
 var imgURL;
 var saves;
@@ -40,15 +40,23 @@ firebase.auth().onAuthStateChanged(function(user){
 		console.log(currentUser);
 		$(".page-header").show();
 		$("#auth").hide();
-
+		userRef = database.ref(currentUser);
 	}else if(user.displayName){
 
 		currentUser = user.displayName;
 		console.log(currentUser);
 		$("#auth").hide();
 		$(".page-header").show();
+		userRef = database.ref(currentUser);
 	}
+userRef.on("value", function(snap){
 
+	currentHero = snap.val().currentHero;
+	saves = snap.val().saves;
+	losses = snap.val().losses;
+	game = snap.val().game;
+	console.log(saves+" "+losses);
+});
 
 });
 function createImageDiv(panel){
@@ -74,14 +82,7 @@ function loadHeros(){
 	}
 	console.log(randomHeros);
 }
-userRef.on("value", function(snap){
 
-	currentHero = snap.val().currentHero;
-	saves = snap.val().saves;
-	losses = snap.val().losses;
-	game = snap.val().game;
-	console.log(saves+" "+losses);
-});
 //Loads sound from Create JS
 function loadSound () {
   createjs.Sound.registerSound("assets/sounds/Thunder1.mp3", soundID);
