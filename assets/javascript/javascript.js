@@ -112,15 +112,13 @@ function createImageDiv(panel){
 
 }
 function loadHeros(){
-
+	var tempHeros = heroImage;
 	for(var i=0; i<3; i++){
 
-		var x = Math.floor(Math.random()*(heroImage.length-1)+1);
-		while(randomHeros.indexOf(heroImage[x]) === -1){
-
-			randomHeros.push(heroImage[x]);
-		}
-
+		var x = Math.floor(Math.random()*(tempHeros.length-1)+1);
+		randomHeros.push(tempHeros[x]);
+		tempHeros.splice(x,1);
+		
 	}
 	console.log(randomHeros);
 }
@@ -270,7 +268,7 @@ $(".next").on("click", function(){
 		number = 90;
 	}
 	console.log(rowsCol);
-	getNext();
+	
 
 });
 
