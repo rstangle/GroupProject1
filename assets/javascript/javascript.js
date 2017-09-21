@@ -1,17 +1,11 @@
-// Initialize Firebase
- var config = {
-   		 apiKey: "AIzaSyD5itEBcOOdHdt4ODe-UHnToWG3IvCIFA0",
-   		 authDomain: "marvel-puzzle-challenge.firebaseapp.com",
-    	 databaseURL: "https://marvel-puzzle-challenge.firebaseio.com",
-   	     projectId: "marvel-puzzle-challenge",
-  	     storageBucket: "marvel-puzzle-challenge.appspot.com",
- 	     messagingSenderId: "875201813648"
- };
-
-firebase.initializeApp(config);
-
+$(".page-header").hide();
+$(".modal").modal({
+	show: false,
+	// backdrop: false,
+});
 var database = firebase.database();
-var userRef = database.ref("user");
+var userRef = null;
+var userCount =  database.ref("users");
 var currentHero;
 var imgURL;
 var saves;
@@ -27,16 +21,78 @@ var randomHeros = [];
 var pieceW = 300;
 var pieceH = 450;
 var rowsCol;
-var win;
-var dropped;
 var indexARR = [];
 var timeOut;
+var currentUser;
+$("#anonymous").on("click", function(){
+
+	firebase.auth().signInAnonymously().catch(function(error) {
+  		// Handle Errors here.
+  		var errorCode = error.code;
+ 		var errorMessage = error.message;
+  		// ...
+	});
+
+	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInAnonymously();
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
+});
+
+firebase.auth().onAuthStateChanged(function(user){
+
+	if(user.isAnonymous){
+
+		currentUser = user.uid;
+		console.log(currentUser);
+		$(".page-header").show();
+		$("#auth").hide();
+		userRef = database.ref(currentUser);
+		userRef.onDisconnect().remove();
+
+	}else if(user.displayName){
+
+		currentUser = user.displayName;
+		console.log(currentUser);
+		$("#auth").hide();
+		$(".page-header").show();
+		userRef = database.ref(currentUser);
+		userRef.onDisconnect().remove();
+	}
+	else{
+
+		$("#auth").show();
+		$(".page-header").hide();
+	}
+
+userRef.on("value", function(snap){
+
+
+	currentHero = snap.val().currentHero;
+	saves = snap.val().saves;
+	losses = snap.val().losses;
+	game = snap.val().game;
+	console.log(saves+" "+losses);
+});
+
+});
 function createImageDiv(panel){
 
 	var img = $("<div>").css({"width": "100px", "height": "150px", 
 							background: "url("+imgURL+")", 
 							"background-size": "cover",
-							margin:"3px 5px", float: "left", "box-shadow": "2px 2px 5px #181b24"});
+							margin:"3px", float: "left"});
 	img.append($("<p>"+currentHero+"</p>").css("color", "white"));
 	img.appendTo("#"+panel);
 
@@ -54,13 +110,7 @@ function loadHeros(){
 	}
 	console.log(randomHeros);
 }
-userRef.on("value", function(snap){
 
-	currentHero = snap.val().currentHero;
-	saves = snap.val().saves;
-	losses = snap.val().losses;
-	console.log(saves+" "+losses);
-});
 //Loads sound from Create JS
 function loadSound () {
   createjs.Sound.registerSound("assets/sounds/Thunder1.mp3", soundID);
@@ -85,25 +135,31 @@ window.onload = function() {
 	loadHeros();
 
 };
-
 $("#start").on("click", function(){
-
 	//call video modal
-	pauseAudio();
-	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=27&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-	$("#startCinematic").modal("show");
-	$("startCinematic").on("shown.bs.modal", function(){
+	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=25&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 
-		timeOut = setTimeout(modalcontrol, 26500);
+});
+
+$("#startCinematic").on("shown.bs.modal", function(){
+		console.log("shown");
+		if(randomHeros.length !=0){
+		timeOut = setTimeout(modalcontrol, 26000);
+		}
 
 	});
-	$("#startCinematic").on("hidden.bs.modal", function(){
-
+	
+$("#startCinematic").on("hidden.bs.modal", function(){
+		console.log("hidden");
 		clearTimeout(timeOut);
 		$("#ytplayer").attr("src", "");
+		if(randomHeros.length <= 0){
+				
+				getNext();
+	
+		}
 		modalcontrol();
-		playAudio();
-	});
+
 });
 
 $(".mybtn").on("click", function(){
@@ -140,16 +196,14 @@ $(".mybtn").on("click", function(){
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
 	makeDrag_drop();
 	// $(".difficulty").hide();
-
 	playSound(soundID);
-
 	callImage(randomHeros[0]);
 	userRef.set({
 
 		currentHero: randomHeros[0],
 		saves: 0,
 		losses: 0,
-		game: 1,
+		
 
 	});
 	randomHeros.splice(0,1);
@@ -188,21 +242,21 @@ $(".next").on("click", function(){
 
 });
 
-$("#continue").on("click", function(){
+$("#modalIntergame").on("shown.bs.modal", function(){
+
+	stop();
+	
+ });
+$("#modalIntergame").on("hidden.bs.modal", function(){
 
 	getNext();
 
 });
-// $("#modalIntergame").on("hidden.bs.modal", function(){
-
-// 	getNext();
-
-// });
 function callImage(heroName){
 
 	var queryURL = "https://gateway.marvel.com/v1/public/characters?ts=1&name="+
-	heroName+"&apikey="+
-	"0044cc7cb16f9553976a74b044391f37&hash=4ff8149b5799a6496b13f7c9bf7c7668&limit=10";
+	heroName+"&apikey="+marvelapi+
+	"&hash="+hash+"&limit=10";
 
 	var img = $("<img>").attr("id", "myImage");
 	var imgPath;
@@ -245,6 +299,7 @@ function createDroppables_Draggables(num, w, h){
 
 }
 function createImgPieces(){
+	console.log(rowsCol);
 	shuffleArr(rowsCol);
 	var canvas;
 	var ctx;
@@ -407,9 +462,11 @@ function shuffleArr(num){
 }
 
 function modalcontrol(){
-	
-	$("#modalStart").modal("show");
+
 	$("#startCinematic").modal("hide");
+	$("#modalStart").modal("show");
+	
+	
 }
 
 function makeDrag_drop(){
@@ -429,7 +486,10 @@ function makeDrag_drop(){
 			},
 			stop: function(){
 
+				userCount.transaction(function(count){
 
+					return count++;
+			});
 				
 			}
 		});
@@ -443,7 +503,7 @@ function makeDrag_drop(){
 				var droppedOn = this;
 				var yours = dragged.children().attr("id");
 				var isRight = $(this).attr("grid-index"); 
-				console.log(isRight + " " + yours);
+				// console.log(isRight + " " + yours);
 
 				if((yours === isRight)){
 
@@ -515,43 +575,44 @@ function isLose(num){
 //**** COUNTDOWN TIMER ***************************************************************************************************************
 //************************************************************************************************************************************
 
-	function run() {
-      intervalId = setInterval(decrement, 1000);
-   //    if ($(".mybtn").attr("data-value") === "3") {
-   //      number = 20;
-   //    } 
-   //    else if ($(".mybtn").attr("data-value") === "4") {
-   //    	number = 45;
-   //    }
-	  // else if ($(".mybtn").attr("data-value") === "5") {
-	  // 	number = 90;
-	  // }
+function run() {
+     
+     intervalId = setInterval(decrement, 1000);
 
-      $("#timer").css("color", "white").html("<h1>" + number + "</h1>");
-    };
+     // $("#timer").css("color", "white").html("<h1>" + number + "</h1>");
+};
 
-    function decrement() {
+function decrement() {
+      
       number--;
-      $("#timer").html("<h1>" + number + "</h1>");
-      if(number <= 15) {
+      
+      if(number <  15) {
       	$("#timer").css("color", "yellow").html("<h1>" + number + "</h1>");
       }
 
-      if(number <= 10) {
+      else if(number < 10) {
       	$("#timer").css("color", "red").html("<h1>" + number + "</h1>");
       }
 
-      if(number === 0) {
+      else if(number === 0) {
         stop();
         $("#timer").css("color", "red").html("<h1>0</h1>");
-        // wrong++;
+        
       }
+      else{
+
+      	$("#timer").html("<h1>" + number + "</h1>");
+
+
+      }
+
+
       if(isWin(rowsCol) && randomHeros.length > 0){
 
-					stop();//stops timer
-					$("#modalIntergame").modal("show");
-					console.log(userRef);
-					createImageDiv("saved");
+					
+					$("#modalIntergame").modal("show");//shows intitial modal for now
+					// console.log(userRef.currentUser);
+					createImageDiv("saves");
 					userRef.transaction(function(user){
 
 						user.saves++;
@@ -564,7 +625,7 @@ function isLose(num){
 
 					
 					$("#modalIntergame").modal("show");
-					createImageDiv("lost");
+					createImageDiv("losses");
 					userRef.transaction(function(user){
 
 						user.losses++;
@@ -573,56 +634,34 @@ function isLose(num){
 		}
 		else if(isWin(rowsCol) && randomHeros.length === 0){
 			
-			createImageDiv("saved");
+			createImageDiv("saves");
 			userRef.transaction(function(user){
 
 						user.saves++;
 						return user;
 			});
-			//show last modal
-			 stop();
+			$("#startCinematic").modal("show");//final modal will show here
+			stop();
+			 
 
 		}
 		else if(isLose(rowsCol) && randomHeros.length === 0){
 			
-			createImageDiv("lost");
+			createImageDiv("losses");
 			userRef.transaction(function(user){
 
 						user.losses++;
 						return user;
 			});
-			 stop();
+			$()
+			$("#startCinematic").modal("show");//final modal will show here
+			stop();
 		}
     }
 
     function stop() {
       clearInterval(intervalId);
     }
-
-    function reset() {
-    	number = 0;
-		$("#timer").html(number);
-		// $("#stats").hide();
-		// $("#question-area").show();
-		run();
-	}
-
-//**** YouTube Video Functions **************************************************************************
-	// var player;
-	// function onYouTubeIframeAPIReady() {
-	// 	player = new YT.Player('player', {
-	//     height: '390',
-	//     width: '640',
-	//     autoplay: 1,
-	//     controls: 0,
-	//   });
-	// }
-
-
-	// player.loadVideoById({videoId: 'rmznTYTPINc',
- //                      startSeconds:0,
- //                      endSeconds:25});
-
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
@@ -662,11 +701,12 @@ function getNext(){
 
 	}
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
+	callImage(randomHeros[0]);
 	makeDrag_drop();
 	// $(".difficulty").hide();
 	playSound(soundID);
 	console.log(randomHeros);
-	callImage(randomHeros[0]);
+	
 	userRef.update({
 
 		currentHero: randomHeros[0],
@@ -675,6 +715,22 @@ function getNext(){
 	
 	randomHeros.splice(0,1);
 	run();
+	}
+	else if( randomHeros.length <= 0 ){
+
+	pieceW = 300;
+	pieceH = 450;
+	randomHeros = [];
+	indexARR = [] ;
+	$(".grid").empty();
+	loadHeros();
+	console.log(randomHeros);
+	// userRef.update({
+
+	// 	saves: 0,
+	// 	losses: 0,
+		
+	// });
 	}
 	
 } 
