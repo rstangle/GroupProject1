@@ -30,3 +30,17 @@ var uiConfig = {
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
       // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
+
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(function() {
+      
+      // In memory persistence will be applied to the signed in Google user
+      // even though the persistence was set to 'none' and a page redirect
+      // occurred.
+      return ui.start('#firebaseui-auth-container', uiConfig);
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });

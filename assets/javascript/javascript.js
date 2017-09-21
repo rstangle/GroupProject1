@@ -24,7 +24,6 @@ var rowsCol;
 var indexARR = [];
 var timeOut;
 var currentUser;
-var ctr;
 $("#anonymous").on("click", function(){
 
 	firebase.auth().signInAnonymously().catch(function(error) {
@@ -34,27 +33,33 @@ $("#anonymous").on("click", function(){
   		// ...
 	});
 
+	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInAnonymously();
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
 });
-// userCount.once("value", function(snap){
 
-// 	ctr = snap.val();
-
-// });
 firebase.auth().onAuthStateChanged(function(user){
 
 	if(user.isAnonymous){
-
-
-		// userCount.transaction(function(count){
-
-		// 	return count++;
-		// });
 
 		currentUser = user.uid;
 		console.log(currentUser);
 		$(".page-header").show();
 		$("#auth").hide();
 		userRef = database.ref(currentUser);
+		userRef.onDisconnect().remove();
 
 	}else if(user.displayName){
 
@@ -63,6 +68,12 @@ firebase.auth().onAuthStateChanged(function(user){
 		$("#auth").hide();
 		$(".page-header").show();
 		userRef = database.ref(currentUser);
+		userRef.onDisconnect().remove();
+	}
+	else{
+
+		$("#auth").show();
+		$(".page-header").hide();
 	}
 
 userRef.on("value", function(snap){
