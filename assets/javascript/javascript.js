@@ -84,6 +84,10 @@ else{
 		// $("#main-menu-image").hide();
 }
 
+
+
+});
+
 userRef.on("value", function(snap){
 
 
@@ -93,7 +97,6 @@ userRef.on("value", function(snap){
 	console.log(saves+" "+losses);
 });
 
-});
 function compare(){
 
 	if(saves>losses){
