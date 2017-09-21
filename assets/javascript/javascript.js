@@ -617,6 +617,7 @@ function decrement() {
 					
 					$("#modalIntergame").modal("show");//shows intitial modal for now
 					// console.log(userRef.currentUser);
+					$("#win-lose-message").html("<h3> Congratulations! You saved " + currentHero + ".</h3>")
 					createImageDiv("saves");
 					userRef.transaction(function(user){
 
@@ -630,6 +631,7 @@ function decrement() {
 
 					
 					$("#modalIntergame").modal("show");
+					$("#win-lose-message").html("<h3>DANGER TRUE BELIEVERS! You lost " + currentHero + ".</h3>")
 					createImageDiv("losses");
 					userRef.transaction(function(user){
 
