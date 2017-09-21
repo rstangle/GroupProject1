@@ -163,6 +163,19 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 		modalcontrol();
 
 });
+$("#modalStart").on("hidden.bs.modal", function(){
+
+	if(!$(".mybtn").data("clicked") && $(".grid").is(":empty")){
+
+		$("#modalStart").modal("show");
+	}
+	else{
+
+		$("#modalStart").modal("hide");
+	}
+
+
+});
 
 $(".mybtn").on("click", function(){
 	$(".page-header").hide();
