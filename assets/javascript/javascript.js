@@ -68,7 +68,9 @@ firebase.auth().onAuthStateChanged(function(user){
 		currentUser = user.displayName;
 		console.log(currentUser);
 		$("#auth").hide();
+		$("#login").hide();
 		$(".page-header").show();
+		$("#main-menu-image").show();
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
 	}
