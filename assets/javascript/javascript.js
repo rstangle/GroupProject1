@@ -63,14 +63,15 @@ firebase.auth().onAuthStateChanged(function(user){
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
 
-	}else if(user.displayName){
+	}else if(user){
 
 		currentUser = user.displayName;
 		console.log(currentUser);
-		$("#auth").hide();
-		$("#login").hide();
 		$(".page-header").show();
 		$("#main-menu-image").show();
+		$("#login").hide();
+		$("#auth").hide();
+
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
 	}
@@ -153,7 +154,7 @@ window.onload = function() {
 };
 $("#start").on("click", function(){
 	//call video modal
-	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=27&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=28&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 
 });
 
@@ -161,7 +162,7 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		console.log("shown");
 		pauseAudio();
 		if(randomHeros.length !=0){
-		timeOut = setTimeout(modalcontrol, 26000);
+		timeOut = setTimeout(modalcontrol, 28000);
 		}
 
 	});
@@ -646,7 +647,7 @@ function decrement() {
 					
 					$("#modalIntergame").modal("show");//shows intitial modal for now
 					// console.log(userRef.currentUser);
-					$("#win-lose-message").html("<h3> Congratulations! You saved " + currentHero + ".</h3>")
+					$("#win-lose-message").html("<h3> Congratulations! You saved " + currentHero.toUpperCase() + ".</h3>")
 					createImageDiv("saves");
 					userRef.transaction(function(user){
 
@@ -660,7 +661,7 @@ function decrement() {
 
 					
 					$("#modalIntergame").modal("show");
-					$("#win-lose-message").html("<h3>DANGER TRUE BELIEVERS! You lost " + currentHero + ".</h3>")
+					$("#win-lose-message").html("<h3>DANGER TRUE BELIEVERS! You lost " + currentHero.toUpperCase() + ".</h3>")
 					createImageDiv("losses");
 					userRef.transaction(function(user){
 
