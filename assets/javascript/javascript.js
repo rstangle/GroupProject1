@@ -52,6 +52,9 @@ $("#anonymous").on("click", function(){
 
 firebase.auth().onAuthStateChanged(function(user){
 
+	
+if(user){
+
 	if(user.isAnonymous){
 
 		currentUser = user.uid;
@@ -63,7 +66,8 @@ firebase.auth().onAuthStateChanged(function(user){
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
 
-	}else if(user){
+	}
+	else{
 
 		currentUser = user.displayName;
 		console.log(currentUser);
@@ -74,12 +78,13 @@ firebase.auth().onAuthStateChanged(function(user){
 		userRef = database.ref(currentUser);
 		userRef.onDisconnect().remove();
 	}
-	else{
+}
+else{
 
 		$("#auth").show();
 		$(".page-header").hide();
 		// $("#main-menu-image").hide();
-	}
+}
 
 userRef.on("value", function(snap){
 
