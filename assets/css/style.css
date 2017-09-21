@@ -9,7 +9,7 @@ body {
 	background-position: center center;
 	background-attachment: fixed;
 	background-size: cover;
-	padding-bottom: 25px;
+/*	padding-bottom: 100px;*/
 }
 
 #saved:after {
@@ -23,7 +23,7 @@ body {
 	content: " ";
 	display: block;
 	clear: both;
-}
+}con
 #anonymous{
 	position: relative;
 	left: 167px;
@@ -147,6 +147,7 @@ h1 {
 #continue {
 	padding: 3% 3%;
 	margin: 5% auto;
+	font-size: 20px;
 }
 
 .modal {
@@ -183,6 +184,10 @@ h1 {
 
 #cinematic-modal > .modal-body {
 	padding: 0px;
+}
+
+#win-lose-message {
+	font-size: 40px;	
 }
 
 .wrapper {
@@ -269,6 +274,10 @@ h1 {
 	padding: 5px;
 }
 
+#losses {
+	padding: 5px;
+}
+
 .difficulty:after {
 	content: " ";
 	display: block;
@@ -316,7 +325,7 @@ h1 {
 }*/
 
 .navbar-static-bottom {
-	padding: 20px 20px 40px 20px;
+	padding: 20px 20px 10px 20px;
 	background: none;
 	color: white;
 	font-size: 10pt;
