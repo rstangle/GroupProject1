@@ -6,19 +6,20 @@
 
 	<!-- BOOTSTRAP CDN -->
 	<!-- Latest compiled and minified CSS -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jcanvas/20.1.2/min/jcanvas.min.js"></script>
-	
 	<script type="text/javascript" src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 	<script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Amarante|Anton|Audiowide|Black+Ops+One|Bowlby+One|Open+Sans+Condensed:300" rel="stylesheet">
 	<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+  <script type="text/javascript" src="assets/javascript/config.js"></script>
+    
 </head>
 <body>
 		
@@ -73,7 +74,7 @@
 		        	<!-- 16:9 aspect ratio -->
 					<div class="embed-responsive embed-responsive-16by9">
 						<iframe id="ytplayer" type="text/html" width="640" height="360"  
-						frameborder="0"></iframe>
+						frameborder="0" allowfullscreen></iframe>
 					</div>
 
 		        </div>
@@ -172,16 +173,22 @@
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
+           <div id="auth"> <div id="firebaseui-auth-container">
+            </div> 
+             <button id="anonymous" class="btn btn-info">Play As Guest</button>
+           </div>
 						<div id="main-menu-image"></div>
 						<div class="page-header">
+
 							  <h1 class="main-menu-title">Marvel Puzzle <br> Challenge <br>
 							  <p></p>
 							  <small class="sub-menu">Do you have what it takes to save<br>Earth's Mightiest Heros?</small></h1> <br>
-							
+							  
 					  <!-- <h2>Welcome to Marvel Puzzle Challenge</h2> -->
 					  <!-- Trigger the modal with a button -->
-							  <button id="start" type="button" class="btn btn-info btn-lg">Start</button><br>
+							  <button id="start" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#startCinematic">Start</button><br>
 							  <button id="rules" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalRules">How to Play</button>
+
 
 						</div> <!-- closes page header div -->
 				</div> <!-- closes col-md-6 div -->
@@ -239,14 +246,18 @@
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES SAVED</h3>
 						  </div>
-						  
+
+						  <div class="panel-body" id="saves"></div>
+
 						</div>
 						
 						<div id="lost" class="panel panel-danger">
 						  <div class="panel-heading">
 						    <h3 class="panel-title">HEROES LOST</h3>
 						  </div>
-						  
+
+						  <div class="panel-body" id="losses"></div>
+
 						</div>
 					</div>
 
