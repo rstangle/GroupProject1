@@ -25,10 +25,37 @@ body {
 	clear: both;
 }
 
-#anonymous{
+#login {
+	margin-top: 350px;
+	min-height: 400px;
+	border: solid 3px #18355f;
+	border-radius: 15px;
+	padding: 5% 18%;
+	color: white;
+	text-align: center;
+	background-color: rgba(8, 24, 57, 0.8);
+	box-shadow: 0px 0px 5px #181b24;
 	position: relative;
-	left: 167px;
+	z-index: 0;
 }
+
+#login > .sub-menu {
+	margin-bottom: 100px;
+}
+
+#anonymous {
+/*	position: relative;*/
+/*	left: 167px;*/
+	text-align: center;
+	min-width: 220px;
+	min-height: 40px;
+	margin: 2% 2% 3% 2%;
+}
+
+.firebaseui-idp-button {
+	margin-top: 30%;
+}
+
 /*#background {
 	background-image: url("../assets/images/images/space3.jpg");
 	background-color: black;
