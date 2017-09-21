@@ -1,7 +1,7 @@
 $(".page-header").hide();
 $(".modal").modal({
 	show: false,
-	//backdrop: false,
+	// backdrop: false,
 });
 var database = firebase.database();
 var userRef = null;
@@ -81,7 +81,7 @@ function createImageDiv(panel){
 	var img = $("<div>").css({"width": "100px", "height": "150px", 
 							background: "url("+imgURL+")", 
 							"background-size": "cover",
-							margin:"3px 5px", float: "left", "box-shadow": "2px 2px 5px #181b24"});
+							margin:"3px", float: "left"});
 	img.append($("<p>"+currentHero+"</p>").css("color", "white"));
 	img.appendTo("#"+panel);
 
@@ -124,14 +124,9 @@ window.onload = function() {
 	loadHeros();
 
 };
-
 $("#start").on("click", function(){
 	//call video modal
-	pauseAudio();
-	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=27&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-	$("#startCinematic").modal("show");
-	$("startCinematic").on("shown.bs.modal", function(){
-
+	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=25&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 
 });
 
@@ -153,8 +148,6 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 	
 		}
 		modalcontrol();
-		playAudio();
-	});
 
 });
 
@@ -192,9 +185,7 @@ $(".mybtn").on("click", function(){
 	createDroppables_Draggables(rowsCol, pieceW, pieceH);
 	makeDrag_drop();
 	// $(".difficulty").hide();
-
 	playSound(soundID);
-
 	callImage(randomHeros[0]);
 	userRef.set({
 
@@ -239,9 +230,6 @@ $(".next").on("click", function(){
 	getNext();
 
 });
-
-$("#continue").on("click", function(){
-
 
 $("#modalIntergame").on("shown.bs.modal", function(){
 
@@ -607,13 +595,12 @@ function decrement() {
 
       if(isWin(rowsCol) && randomHeros.length > 0){
 
-
 					
 					$("#modalIntergame").modal("show");//shows intitial modal for now
 					// console.log(userRef.currentUser);
 					createImageDiv("saves");
-					stop();//stops timer
 					userRef.transaction(function(user){
+
 						user.saves++;
 						return user;
 					})
@@ -661,14 +648,6 @@ function decrement() {
     function stop() {
       clearInterval(intervalId);
     }
-
-    function reset() {
-    	number = 0;
-		$("#timer").html(number);
-		// $("#stats").hide();
-		// $("#question-area").show();
-		run();
-	}
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
