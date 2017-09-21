@@ -8,7 +8,7 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jcanvas/20.1.2/min/jcanvas.min.js"></script>
 	<script type="text/javascript" src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
@@ -20,6 +20,7 @@
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
  	<script type="text/javascript" src="assets/javascript/config.js"></script>
     
 
@@ -157,7 +158,7 @@
 		        </div>
 		        
 		        <div class="modal-footer">
-					<h3>Change Difficulty Level <i>(Optional)</i></h3>	        	
+					<h4>Change Difficulty Level <i>(Optional)</i></h4>	        	
 					<button type="button" class="next btn btn-info" data-dismiss="modal" data-value="3">Easy</button>
 					<button type="button" class="next btn btn-warning" data-dismiss="modal" data-value="4">Medium</button>
 					<button type="button" class="next btn btn-danger" data-dismiss="modal" data-value="5">Hard</button>
@@ -174,12 +175,22 @@
 				<div class="col-md-3"></div>
 
 				<div class="col-md-6">
-				        <div id="auth"> <div id="firebaseui-auth-container">
-				          </div> 
-				             <button id="anonymous" class="btn btn-info">Play As Guest</button>
+				        
+				        <div id="main-menu-image"></div>
+
+				        <div id="login">
+				        	<h1 class="main-menu-title">Marvel Puzzle <br> Challenge <br>
+							  <p></p> <!-- Using the empty p tag as a space break. Line break was too much space -->
+							  <small class="sub-menu">Do you have what it takes to save<br>Earth's Mightiest Heros?</small>
+							</h1> 
+							<p></p><p></p><p></p>
+				        	<div id="auth"> <div id="firebaseui-auth-container">
+				          	</div> 
+				            	<button id="anonymous" class="btn btn-info">Play As Guest</button>
+				        	</div>
 				        </div>
 						
-						<div id="main-menu-image"></div>
+						<!-- <div id="main-menu-image"></div> -->
 						<div class="page-header">
 
 							  <h1 class="main-menu-title">Marvel Puzzle <br> Challenge <br>
