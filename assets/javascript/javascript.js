@@ -160,6 +160,8 @@ $("#start").on("click", function(){
 $("#startCinematic").on("shown.bs.modal", function(){
 		console.log("shown");
 		pauseAudio();
+		// $(".page-header").hide();
+		// $("#main-menu-image").hide();
 		if(randomHeros.length !=0){
 		timeOut = setTimeout(modalcontrol, 28000);
 		}
@@ -170,6 +172,8 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 		console.log("hidden");
 		clearTimeout(timeOut);
 		playAudio();
+		// $(".page-header").show();
+		// $("#main-menu-image").show();
 		$("#ytplayer").attr("src", "");
 		if(randomHeros.length <= 0){
 				//show final modal
@@ -646,7 +650,7 @@ function decrement() {
 					
 					$("#modalIntergame").modal("show");//shows intitial modal for now
 					// console.log(userRef.currentUser);
-					$("#win-lose-message").html("<h3> Congratulations! You saved " + currentHero.toUpperCase() + ".</h3>")
+					$("#win-lose-message").html("<h3> Congratulations!<br> You saved " + currentHero.toUpperCase() + ".</h3>")
 					createImageDiv("saves");
 					userRef.transaction(function(user){
 
@@ -660,7 +664,7 @@ function decrement() {
 
 					
 					$("#modalIntergame").modal("show");
-					$("#win-lose-message").html("<h3>DANGER TRUE BELIEVERS! You lost " + currentHero.toUpperCase() + ".</h3>")
+					$("#win-lose-message").html("<h3>DANGER TRUE BELIEVERS!<br> You lost " + currentHero.toUpperCase() + ".</h3>")
 					createImageDiv("losses");
 					userRef.transaction(function(user){
 
@@ -676,8 +680,15 @@ function decrement() {
 						user.saves++;
 						return user;
 			});
-			$("#startCinematic").modal("show");//final modal will show here
-			stop();
+			$("#final-screen").modal("show");
+			//final modal will show here
+			$("#final-screen").on("shown.bs.modal", function(){
+				stop();
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				pauseAudio();
+			 });
+			
+			// stop();
 			 
 
 		}
@@ -689,9 +700,17 @@ function decrement() {
 						user.losses++;
 						return user;
 			});
-			$()
-			$("#startCinematic").modal("show");//final modal will show here
-			stop();
+
+			$("#final-screen").modal("show");
+			//final modal will show here
+			$("#final-screen").on("shown.bs.modal", function(){
+				stop();
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=23&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				pauseAudio();
+			 });
+			// $()
+			// $("#startCinematic").modal("show");//final modal will show here
+			// stop();
 		}
     }
 
