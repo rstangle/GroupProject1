@@ -241,21 +241,23 @@ $("#final-screen").on("shown.bs.modal", function(){
 
 $("#final-screen").on("hidden.bs.modal", function(){
 
+	
+
+			getNext();
+			console.log("hidden no quit");
 		
-		getNext();
-		console.log("hidden no quit");
+			playAudio();
+			// $(".page-header").show();
+			// $("#main-menu-image").show();
+			
+			modalcontrol();
+			console.log($(".quit").data("clicked"));
+
+
 		
-		playAudio();
-		// $(".page-header").show();
-		// $("#main-menu-image").show();
-		
-		modalcontrol();
 
 });
-$("#quit").on("click", function(){
 
-	window.close();
-})
 function modalcontrol(){
 //control final modal 
 	clearTimeout(timeOut);
@@ -278,7 +280,7 @@ function modalcontrol(){
 //on final modal hide show startmodal??
 $("#modalStart").on("hidden.bs.modal", function(){
 
-	if(!$(".mybtn").data("clicked") && $(".grid").is(":empty")){
+	if($(".grid").is(":empty")){
 
 		$("#modalStart").modal("show");
 	}
@@ -654,7 +656,7 @@ function isWin(num){
 		}
 
 	}
-	if(count === num && number>0){
+	if(count === num && number > 0){
 
 		return true;
 
@@ -679,7 +681,7 @@ function isLose(num){
 		}
 
 	}
-	if( number === 0 && count != num){
+	if( number <= 0 && count != num){
 
 		return true;
 	}
