@@ -177,7 +177,7 @@ function appendFinal(){
 		$("#win-lose-message").html("<h3> You Beat Thanos </h3>");//edit message
 
 	}
-	else if(!compare()){
+	else{
 
 		console.log("lose");
 		$("#win-lose-message").html("<h3> Thanos defeated the heros </h3>");//edit message
@@ -210,7 +210,7 @@ $("#startCinematic").on("shown.bs.modal", function(){
 				pauseAudio();
 
 			}
-			else if(!compare()){
+			else{
 
 				stop();
 				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
