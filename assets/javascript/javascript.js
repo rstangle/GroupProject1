@@ -186,24 +186,31 @@ function appendFinal(){
 
 	$("#final-saves").empty();
 	$("#final-losses").empty();
-	$("#saves").children().detach().appendTo("#final-saves");
-	$("#losses").children().detach().appendTo("#final-losses");
+	$("#saves").children().detach().appendTo("#final-saves").css({"text-align": "center", "width": "150px", "height": "225px", 
+							"margin":"0px 2%", "box-shadow": "2px 2px 5px #181b24"});
+
+	$("#losses").children().detach().appendTo("#final-losses").css({"text-align": "center", "width": "150px", "height": "225px", 
+							"margin":"0px 2%", "box-shadow": "2px 2px 5px #181b24"});
 	// define final texts here
 	
 	if(compare()){
+		console.log("win");
+		$("#end-game-message").html("<h2>You Beat Thanos</h2>");//edit message
+		// $("#win-lose-message").html("<h3>Danger True Believers!<br> You lost " + currentHero.toUpperCase() + ".</h3>");
 
-		$("#final-message").html("<h3> You Beat Thanos </h3>");//edit message
 
 	}
 	else{
 
-		
-		$("#final-message").html("<h3> Thanos defeated the heros </h3>");//edit message
+
+		console.log("lose");
+		$("#end-game-message").html("<h2> Thanos defeated the heroes </h2>");//edit message
+
 
 	}
 	
 
-}
+};
 function hideMovieShowFinal(){
 
 	$("#startCinematic").modal("hide");
@@ -218,8 +225,9 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		}
 		else if(randomHeros.length <= 0){
 
-			timeOut = setTimeout(hideMovieShowFinal, 22000);
-			
+			timeOut = setTimeout(hideMovieShowFinal, 28000);
+			console.log(compare());
+
 			if(compare()){
 
 				stop();
@@ -766,8 +774,6 @@ function decrement() {
 			});
 			$("#startCinematic").modal("show");
 			
-			 
-
 		}
 		else if(isLose(rowsCol) && randomHeros.length === 0){
 			
