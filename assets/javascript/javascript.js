@@ -174,10 +174,38 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 		if(randomHeros.length <= 0){
 				//show final modal
 				//get saved and lost numbers
-				getNext();
+				$("#final-screen").modal("show");
+				$("#saves").children().detach().appendTo("#final-saves");
+				$("#losses").children().detach().appendTo("#final-losses");
+				if(compare()){
+
+
+
+				}
+				else{
+
+
+				}
 	
 		}
-		modalcontrol();
+		else{
+
+				modalcontrol();
+		}
+
+});
+$("#final-screen").on("hidden.bs.modal", function(){
+
+	
+	if($("#replay").data("clicked")){
+
+		$("#modalStart").modal("show");
+	}
+	else if(){
+
+
+	}
+
 
 });
 //on final modal hide show startmodal??
@@ -677,13 +705,13 @@ function decrement() {
 						user.saves++;
 						return user;
 			});
-			$("#final-screen").modal("show");
+			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#final-screen").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayerfinal").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-			 });
+		
+			stop();
+			$("#startCinematic").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+			pauseAudio();
+			 
 			
 			// stop();
 			 
@@ -698,14 +726,12 @@ function decrement() {
 						return user;
 			});
 
-			$("#final-screen").modal("show");
+			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#final-screen").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayerfinal").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=23&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-			 });
-			// $()
+		
+			stop();
+			$("#startCinematic").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+			pauseAudio();
 			// $("#startCinematic").modal("show");//final modal will show here
 			// stop();
 		}

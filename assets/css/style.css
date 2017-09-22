@@ -24,6 +24,12 @@ body {
 	display: block;
 	clear: both;
 }
+.clearfix:after {
+
+	content: " ";
+	display: block;
+	clear: both;
+}
 
 #login {
 	margin-top: 350px;
