@@ -178,14 +178,31 @@
 		      <!-- MODAL CONTENT-->
 		      <div id="final-modal" class="modal-content">
 
+		      	<div class="modal-header">
+		          <button type="button" class="close" onclick="window.close()">&times;</button>
+		          <h4 id="win-lose-message" class="modal-title">....<!-- Cogratulations!<br>You Saved a Hero! --></h4>
+		        </div>
+			
 		        <div class="modal-body">
-		        	<!-- 16:9 aspect ratio -->
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe id="ytplayer" type="text/html" width="640" height="360"  
-						frameborder="0" allowfullscreen="1"></iframe>
-					</div>
+		        	<h3>You Saved</h3>
+		        	<div class="clearfix" id="final-saves">
+		        		
+		        	</div>
+		        	<br>
+					<h3>You Lost</h3>
+		        	<div class="clearfix" id="final-losses">
+		        		
+		        	</div>
 
 		        </div><!--  CLOSES MODAL-BODY -->
+
+		         <div class="modal-footer">
+					        	
+					<button  type="button" class="replay btn btn-info" data-dismiss="modal" >Play Again</button>
+					<button  type="button" class="quit btn btn-danger" onclick="window.close()">Quit</button>
+					
+							
+		        </div>
 		        
 		     </div><!--  CLOSES FINAL-MODAL -->
 						      

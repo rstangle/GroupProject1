@@ -102,11 +102,13 @@ function compare(){
 
 	if(saves>losses){
 
-		//update final modal
+		
+		return true;
 	}
 	else if(losses > saves){
 
-		//update final modal
+		
+		return false;
 	}
 
 
@@ -164,39 +166,124 @@ $("#start").on("click", function(){
 	$("#ytplayer").attr("src", "https://www.youtube.com/embed/rmznTYTPINc?autoplay=1&controls=0&end=28&modestbrandding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 
 });
+function appendFinal(){
 
+	$("#final-saves").empty();
+	$("#final-losses").empty();
+	$("#saves").children().detach().appendTo("#final-saves");
+	$("#losses").children().detach().appendTo("#final-losses");
+	// define final texts here
+	console.log(compare());
+	if(compare()){
+		console.log("win");
+		$("#win-lose-message").html("<h3> You Beat Thanos </h3>");//edit message
+
+	}
+	else{
+
+		console.log("lose");
+		$("#win-lose-message").html("<h3> Thanos defeated the heros </h3>");//edit message
+
+	}
+	
+
+}
+function hideMovieShowFinal(){
+
+	$("#startCinematic").modal("hide");
+	$("#final-screen").modal("show");
+}
 $("#startCinematic").on("shown.bs.modal", function(){
 		console.log("shown");
 		pauseAudio();
 		// $(".page-header").hide();
 		// $("#main-menu-image").hide();
-		if(randomHeros.length !=0){
-		timeOut = setTimeout(modalcontrol, 28000);
+		if(randomHeros.length > 0){
+			timeOut = setTimeout(modalcontrol, 28000);
+		}
+		else if(randomHeros.length <= 0){
+
+			timeOut = setTimeout(hideMovieShowFinal, 22000);
+			console.log(compare());
+			if(compare()){
+
+				stop();
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=62&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				pauseAudio();
+
+			}
+			else{
+
+				stop();
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				pauseAudio();
+
+			}
 		}
 
 	});
 
 $("#startCinematic").on("hidden.bs.modal", function(){
 		console.log("hidden");
+
 		clearTimeout(timeOut);
-		// $("#game-music").html("<src='assets/sounds/background-ambient-music.mp3' type='audio/mpeg'>");
+		console.log("time out cleared")
 		playAudio();
 		// $(".page-header").show();
 		// $("#main-menu-image").show();
 		$("#ytplayer").attr("src", "");
-		if(randomHeros.length <= 0){
-				//show final modal
-				//get saved and lost numbers
-				getNext();
-	
-		}
 		modalcontrol();
 
 });
+$("#final-screen").on("shown.bs.modal", function(){
+
+		
+		appendFinal();
+
+});
+
+$("#final-screen").on("hidden.bs.modal", function(){
+
+	
+
+			getNext();
+			console.log("hidden no quit");
+		
+			playAudio();
+			// $(".page-header").show();
+			// $("#main-menu-image").show();
+			
+			modalcontrol();
+			console.log($(".quit").data("clicked"));
+
+
+		
+
+});
+
+function modalcontrol(){
+//control final modal 
+	clearTimeout(timeOut);
+	if(randomHeros.length > 0){
+		
+		$("#startCinematic").modal("hide");
+		$("#modalStart").modal("show");
+	}
+	else if(randomHeros.length <= 0){
+
+		$("#ytplayer").attr("src", "");
+		$("#startCinematic").modal("hide");
+
+		$("#final-screen").modal("show");
+
+	}
+	
+	
+}
 //on final modal hide show startmodal??
 $("#modalStart").on("hidden.bs.modal", function(){
 
-	if(!$(".mybtn").data("clicked") && $(".grid").is(":empty")){
+	if($(".grid").is(":empty")){
 
 		$("#modalStart").modal("show");
 	}
@@ -510,14 +597,6 @@ function shuffleArr(num){
  	console.log(indexARR);
 }
 
-function modalcontrol(){
-//control final modal 
-	$("#startCinematic").modal("hide");
-	$("#modalStart").modal("show");
-	
-	
-}
-
 function makeDrag_drop(){
 		var lastPlace;
 
@@ -580,7 +659,7 @@ function isWin(num){
 		}
 
 	}
-	if(count === num && number>0){
+	if(count === num && number > 0){
 
 		return true;
 
@@ -605,7 +684,7 @@ function isLose(num){
 		}
 
 	}
-	if( number === 0 && count != num){
+	if( number <= 0 && count != num){
 
 		return true;
 	}
@@ -691,14 +770,7 @@ function decrement() {
 			});
 			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#startCinematic").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=62&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-
-				// modalcontrol();
-			 });
-			
+		
 			
 			stop();
 			 
@@ -715,11 +787,7 @@ function decrement() {
 
 			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#startCinematic").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-			 });
+			
 
 			// modalcontrol();
 			// $()
