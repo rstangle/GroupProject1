@@ -158,8 +158,13 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		pauseAudio();
 		// $(".page-header").hide();
 		// $("#main-menu-image").hide();
-		if(randomHeros.length !=0){
-		timeOut = setTimeout(modalcontrol, 28000);
+		if(randomHeros.length > 0){
+			timeOut = setTimeout(modalcontrol, 28000);
+		}
+		else if(randomHeros.length <= 0){
+
+			timeout = setTimeout(modalcontrol, 18000);
+
 		}
 
 	});
@@ -179,11 +184,12 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 				$("#losses").children().detach().appendTo("#final-losses");
 				if(compare()){
 
-
+					//append text to final-screen
 
 				}
 				else{
 
+					//append text to final-screen
 
 				}
 	
@@ -199,11 +205,16 @@ $("#final-screen").on("hidden.bs.modal", function(){
 	
 	if($("#replay").data("clicked")){
 
-		$("#modalStart").modal("show");
+		getNext();
+		
 	}
-	else if(){
+	else if($("#quit").data("clicked")){
 
+		location.reload();
+	}
+	else{
 
+		getNext();
 	}
 
 
@@ -706,16 +717,7 @@ function decrement() {
 						return user;
 			});
 			$("#startCinematic").modal("show");
-			//final modal will show here
- 
-
-			$("#startCinematic").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=62&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-
-				// modalcontrol();
-			 });
+			//final modal will show her
 
 			
 			
@@ -734,12 +736,6 @@ function decrement() {
 
 			$("#startCinematic").modal("show");
 			//final modal will show here
-
-			$("#startCinematic").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-			 });
 
 			// modalcontrol();
 			// $()
