@@ -189,13 +189,13 @@ h1 {
 	clear: both;
 }
 
-#startCinematic > .modal-dialog,
-#final-screen > .modal-dialog {
+#startCinematic > .modal-dialog
+/*#final-screen > .modal-dialog*/ {
 	width: 70%;
 	height: 70%;
 }
 
-#startCinematic, #final-screen {
+#startCinematic/*, #final-screen*/ {
 	margin-top: 7%;
 }
 
@@ -203,9 +203,17 @@ h1 {
 	background-color: black;
 }
 
-#cinematic-modal > .modal-body,
-#final-screen > .modal-body {
+#cinematic-modal > .modal-body
+/*#final-screen > .modal-body*/ {
 	padding: 0px;
+}
+
+#final-modal {
+	text-align: center;
+}
+
+#final-modal > .modal-body {
+	font-family: 'Audiowide', sans-serif;
 }
 
 /*#final-screen > .modal-dialog {
@@ -215,6 +223,12 @@ h1 {
 
 #win-lose-message {
 	font-size: 40px;	
+}
+
+#final-saves, #final-losses {
+	margin: 0px auto;
+	padding-left: 5%;
+	text-align: center;
 }
 
 .wrapper {
