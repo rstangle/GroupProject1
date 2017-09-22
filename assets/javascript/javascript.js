@@ -24,8 +24,26 @@ var rowsCol;
 var indexARR = [];
 var timeOut;
 var currentUser;
+
+function logOut(){
+
+
+	firebase.auth().signOut().then(function() {
+
+  // Sign-out successful.
+	}).catch(function(error) {
+
+  // An error happened.
+  	var errorCode = error.code;
+    var errorMessage = error.message;
+	});
+
+	window.location.reload();
+
+
+}
 $("#anonymous").on("click", function(){
-	console.log("selected guest login");
+	
 	
 
 	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
@@ -46,51 +64,49 @@ $("#anonymous").on("click", function(){
 });
 
 firebase.auth().onAuthStateChanged(function(user){
-	console.log("AuthStateChanged");
+
 		
 	if(user){
 
 		if(user.isAnonymous){
 
 			currentUser = user.uid;
-			console.log(currentUser);
+			
 			$(".page-header").show();
 			$("#main-menu-image").show();
 			$("#login").hide();
 			$("#auth").hide();
 			userRef = database.ref("users/"+currentUser);
 			userRef.onDisconnect().remove();
-			console.log("THIS SECTION SEEN");
+			
 
 		}
 		else if(user.displayName){
 
 			currentUser = user.displayName;
-			console.log(currentUser);
+			
 			$(".page-header").show();
 			$("#main-menu-image").show();
 			$("#login").hide();
 			$("#auth").hide();
 			userRef = database.ref("users/"+currentUser);
 			userRef.onDisconnect().remove();
-			console.log("THIS SECTION SEEN");
+			
 			
 		}
 		userRef.on("value", function(snap){
-		console.log("userref on value")
+	
 			currentHero = snap.val().currentHero;
 			saves = snap.val().saves;
 			losses = snap.val().losses;
-			console.log(saves+" "+losses);
+			
 	     });
 		
 	}
-	else{
+	
 
-			$("#auth").show();
-			$(".page-header").hide();
-			// $("#main-menu-image").hide();
-	}
+		
+	
 
 
 
@@ -132,7 +148,7 @@ function loadHeros(){
 		tempHeros.splice(x,1);
 		
 	}
-	console.log(randomHeros);
+	
 }
 
 //Loads sound from Create JS
@@ -176,17 +192,20 @@ function appendFinal(){
 	$("#losses").children().detach().appendTo("#final-losses").css({"text-align": "center", "width": "150px", "height": "225px", 
 							"margin":"0px 2%", "box-shadow": "2px 2px 5px #181b24"});
 	// define final texts here
-	console.log(compare());
+	
 	if(compare()){
 		console.log("win");
 		$("#end-game-message").html("<h2>You Beat Thanos</h2>");//edit message
 		// $("#win-lose-message").html("<h3>Danger True Believers!<br> You lost " + currentHero.toUpperCase() + ".</h3>");
 
+
 	}
 	else{
 
+
 		console.log("lose");
 		$("#end-game-message").html("<h2> Thanos defeated the heroes </h2>");//edit message
+
 
 	}
 	
@@ -198,10 +217,9 @@ function hideMovieShowFinal(){
 	$("#final-screen").modal("show");
 }
 $("#startCinematic").on("shown.bs.modal", function(){
-		console.log("shown");
+		
 		pauseAudio();
-		// $(".page-header").hide();
-		// $("#main-menu-image").hide();
+		
 		if(randomHeros.length > 0){
 			timeOut = setTimeout(modalcontrol, 28000);
 		}
@@ -209,6 +227,7 @@ $("#startCinematic").on("shown.bs.modal", function(){
 
 			timeOut = setTimeout(hideMovieShowFinal, 28000);
 			console.log(compare());
+
 			if(compare()){
 
 				stop();
@@ -228,13 +247,8 @@ $("#startCinematic").on("shown.bs.modal", function(){
 	});
 
 $("#startCinematic").on("hidden.bs.modal", function(){
-		console.log("hidden");
 
-		clearTimeout(timeOut);
-		console.log("time out cleared")
 		playAudio();
-		// $(".page-header").show();
-		// $("#main-menu-image").show();
 		$("#ytplayer").attr("src", "");
 		modalcontrol();
 
@@ -251,14 +265,9 @@ $("#final-screen").on("hidden.bs.modal", function(){
 	
 
 			getNext();
-			console.log("hidden no quit");
-		
 			playAudio();
-			// $(".page-header").show();
-			// $("#main-menu-image").show();
-			
 			modalcontrol();
-			console.log($(".quit").data("clicked"));
+		
 
 
 		
@@ -344,7 +353,7 @@ $(".mybtn").on("click", function(){
 
 	});
 	randomHeros.splice(0,1);
-	console.log(randomHeros);
+	
 	run();
 });
 
@@ -374,7 +383,7 @@ $(".next").on("click", function(){
 		rowsCol = 5*5;
 		number = 90;
 	}
-	console.log(rowsCol);
+	
 	
 
 });
@@ -398,18 +407,18 @@ function callImage(heroName){
 	var img = $("<img>").attr("id", "myImage");
 	var imgPath;
 	var imgExt;
-	// var imgURL;
+	
 
 	$.ajax({
 
 		url: queryURL,
 		method: "GET"
 	}).done(function(response){
-		console.log(response);
+		
 		var protocol = response.data.results[0].thumbnail.path.split(":");
 		protocol[0] = "https";
 		imgPath = protocol.join(":");
-		console.log(imgPath);
+		
 		imgExt = response.data.results[0].thumbnail.extension;
 		imgURL = imgPath + "/portrait_uncanny." + imgExt;
 		img.attr("src", imgURL);
@@ -439,7 +448,7 @@ function createDroppables_Draggables(num, w, h){
 
 }
 function createImgPieces(){
-	console.log(rowsCol);
+	
 	shuffleArr(rowsCol);
 	var canvas;
 	var ctx;
@@ -598,7 +607,7 @@ function shuffleArr(num){
  		//since this is a random process
  		arr.splice(r,1);
  	}
- 	console.log(indexARR);
+ 
 }
 
 function makeDrag_drop(){
@@ -633,7 +642,7 @@ function makeDrag_drop(){
 				var droppedOn = this;
 				var yours = dragged.children().attr("id");
 				var isRight = $(this).attr("grid-index"); 
-				// console.log(isRight + " " + yours);
+				
 
 				if((yours === isRight)){
 
@@ -651,6 +660,7 @@ function makeDrag_drop(){
 			}
 		});
 }
+
 function isWin(num){
 	var count = 0;
 	for(var i=0; i < num; i++){
@@ -668,10 +678,7 @@ function isWin(num){
 		return true;
 
 	}
-	// else {
-
-	// 	return false;
-	// }
+	
 
 
 }
@@ -692,14 +699,9 @@ function isLose(num){
 
 		return true;
 	}
-	// else{
-
-	// 	return false;
-	// }
+	
 
 }
-
-// var text = $("<p>"+"True believers....."+"<br><br>"+"a bunch of text"+"</p>");
 
 //************************************************************************************************************************************
 //**** COUNTDOWN TIMER ***************************************************************************************************************
@@ -708,8 +710,6 @@ function isLose(num){
 function run() {
      
      intervalId = setInterval(decrement, 1000);
-
-     // $("#timer").css("color", "white").html("<h1>" + number + "</h1>");
 };
 
 function decrement() {
@@ -740,15 +740,15 @@ function decrement() {
       if(isWin(rowsCol) && randomHeros.length > 0){
 
 					
-					$("#modalIntergame").modal("show");//shows intitial modal for now
-					// console.log(userRef.currentUser);
+					$("#modalIntergame").modal("show");
+					
 					$("#win-lose-message").html("<h3> Congratulations!<br> You saved " + currentHero.toUpperCase() + ".</h3>");
 					createImageDiv("saves");
 					userRef.transaction(function(user){
 
 						user.saves++;
 						return user;
-					})
+					});
 					
 
 		}
@@ -762,7 +762,7 @@ function decrement() {
 
 						user.losses++;
 						return user; 
-					})
+					});
 		}
 		else if(isWin(rowsCol) && randomHeros.length === 0){
 			
@@ -773,12 +773,7 @@ function decrement() {
 						return user;
 			});
 			$("#startCinematic").modal("show");
-			//final modal will show here
-		
 			
-			stop();
-			 
-
 		}
 		else if(isLose(rowsCol) && randomHeros.length === 0){
 			
@@ -790,39 +785,35 @@ function decrement() {
 			});
 
 			$("#startCinematic").modal("show");
-			//final modal will show here
 			
+ 	   }
+}
 
-			// modalcontrol();
-			// $()
-			// $("#startCinematic").modal("show");//final modal will show here
-			stop();
-		}
-    }
+function stop() {
 
-    function stop() {
       clearInterval(intervalId);
-    }
+}
 
 //************************************************************************************************************************************
 //**** BACKGROUND MUSIC **************************************************************************************************************
 //************************************************************************************************************************************
 
-	var audio = document.getElementById("game-music");
+var audio = document.getElementById("game-music");
 
-	function playAudio() {
+function playAudio() {
 		audio.play();
-	}
+}
 
-	function pauseAudio() {
+function pauseAudio() {
 		audio.pause();
-	}
+}
 
 // *******************************************
 // ******Next FOR CONTINUITY*****************
 // *******************************************
 //not done yet
 function getNext(){
+
 	if(randomHeros.length > 0){
 	indexARR =[];
 	$(".grid").empty();
@@ -846,7 +837,7 @@ function getNext(){
 	makeDrag_drop();
 	// $(".difficulty").hide();
 	playSound(soundID);
-	console.log(randomHeros);
+	
 	
 	userRef.update({
 
@@ -865,7 +856,6 @@ function getNext(){
 	indexARR = [] ;
 	$(".grid").empty();
 	loadHeros();
-	console.log(randomHeros);
 	// userRef.update({
 
 	// 	saves: 0,
