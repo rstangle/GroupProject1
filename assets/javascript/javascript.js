@@ -11,10 +11,11 @@ var saves;
 var losses;
 var game;
 var soundID = "Thunder";
-var EFX1 = "ButtonDrop";
+var EFX1 = "ballbounce_1";
 var EFX2 = "SWISH";
 var backgroundMusic = "M-GameBG";
-var heroImage = ["cyclops (x-men: battle of the atom)", "omega red", "magneto (x-men: battle of the atom)","rogue (x-men: battle of the atom)", "captain america", "captain marvel (carol danvers)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
+var ambientMusic = "ambient";
+var heroImage = ["cyclops (x-men: battle of the atom)", "squirrel girl", "omega red", "magneto (x-men: battle of the atom)","rogue (x-men: battle of the atom)", "captain america", "captain marvel (carol danvers)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
 var number = 0;
 var randomHeros = [];
 var pieceW = 300;
@@ -137,8 +138,9 @@ function loadHeros(){
 //Loads sound from Create JS
 function loadSound () {
   createjs.Sound.registerSound("assets/sounds/Thunder1.mp3", soundID);
-  createjs.Sound.registerSound("assets/sounds/G1_FX_DashboardClick.mp3", EFX1);
+  createjs.Sound.registerSound("assets/sounds/ballbounce_1.mp3", EFX1);
   createjs.Sound.registerSound("assets/sounds/G2_FX_ClickWrong.mp3", EFX2);
+  createjs.Sound.registerSound("assets/sounds/background-ambient-music.mp3", ambientMusic);
 }
 
 //Plays sound from Create JS
@@ -223,7 +225,8 @@ $("#startCinematic").on("shown.bs.modal", function(){
 
 $("#startCinematic").on("hidden.bs.modal", function(){
 		console.log("hidden");
-		
+
+		clearTimeout(timeOut);
 		console.log("time out cleared")
 		playAudio();
 		// $(".page-header").show();
