@@ -656,7 +656,7 @@ function decrement() {
 					
 					$("#modalIntergame").modal("show");//shows intitial modal for now
 					// console.log(userRef.currentUser);
-					$("#win-lose-message").html("<h3> Congratulations!<br> You saved " + currentHero.toUpperCase() + ".</h3>")
+					$("#win-lose-message").html("<h3> Congratulations!<br> You saved " + currentHero.toUpperCase() + ".</h3>");
 					createImageDiv("saves");
 					userRef.transaction(function(user){
 
@@ -670,12 +670,12 @@ function decrement() {
 
 					
 					$("#modalIntergame").modal("show");
-					$("#win-lose-message").html("<h3>DANGER TRUE BELIEVERS!<br> You lost " + currentHero.toUpperCase() + ".</h3>")
+					$("#win-lose-message").html("<h3>Danger True Believers!<br> You lost " + currentHero.toUpperCase() + ".</h3>");
 					createImageDiv("losses");
 					userRef.transaction(function(user){
 
 						user.losses++;
-						return user;
+						return user; 
 					})
 		}
 		else if(isWin(rowsCol) && randomHeros.length === 0){
@@ -686,13 +686,16 @@ function decrement() {
 						user.saves++;
 						return user;
 			});
-			$("#final-screen").modal("show");
+			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#final-screen").on("shown.bs.modal", function(){
+			$("#startCinematic").on("shown.bs.modal", function(){
 				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=62&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 				pauseAudio();
+
+				// modalcontrol();
 			 });
+			
 			
 			// stop();
 			 
@@ -707,13 +710,15 @@ function decrement() {
 						return user;
 			});
 
-			$("#final-screen").modal("show");
+			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#final-screen").on("shown.bs.modal", function(){
+			$("#startCinematic").on("shown.bs.modal", function(){
 				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=23&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 				pauseAudio();
 			 });
+
+			// modalcontrol();
 			// $()
 			// $("#startCinematic").modal("show");//final modal will show here
 			// stop();
