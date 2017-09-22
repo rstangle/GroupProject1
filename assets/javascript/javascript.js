@@ -29,11 +29,7 @@ $("#anonymous").on("click", function(){
 
 	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   .then(function() {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
+   
     return firebase.auth().signInAnonymously();
   })
   .catch(function(error) {
@@ -84,13 +80,6 @@ firebase.auth().onAuthStateChanged(function(user){
 	     });
 		
 	}
-	else{
-
-			$("#auth").show();
-			$(".page-header").hide();
-			// $("#main-menu-image").hide();
-	}
-
 
 
 });
@@ -102,10 +91,11 @@ function compare(){
 	if(saves>losses){
 
 		//update final modal
+		return true;
 	}
 	else if(losses > saves){
 
-		//update final modal
+		return false;
 	}
 
 
@@ -631,24 +621,25 @@ function decrement() {
       number--;
       
       if(number <  15) {
-      	$("#timer").css("color", "yellow").html("<h1>" + number + "</h1>");
+      	$("#timer").css("color", "yellow");
+      	console.log("yellow");
       }
 
       else if(number < 10) {
-      	$("#timer").css("color", "red").html("<h1>" + number + "</h1>");
+      	$("#timer").css("color", "red");
       }
 
       else if(number === 0) {
         stop();
-        $("#timer").css("color", "red").html("<h1>0</h1>");
+        $("#timer").css("color", "red");
         
       }
-      else{
+      
 
-      	$("#timer").html("<h1>" + number + "</h1>");
+      $("#timer").html("<h1>" + number + "</h1>");
 
 
-      }
+      
 
 
       if(isWin(rowsCol) && randomHeros.length > 0){
@@ -690,7 +681,7 @@ function decrement() {
 			//final modal will show here
 			$("#final-screen").on("shown.bs.modal", function(){
 				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				$("#ytplayerfinal").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=64&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 				pauseAudio();
 			 });
 			
@@ -711,7 +702,7 @@ function decrement() {
 			//final modal will show here
 			$("#final-screen").on("shown.bs.modal", function(){
 				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=23&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				$("#ytplayerfinal").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=23&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 				pauseAudio();
 			 });
 			// $()
