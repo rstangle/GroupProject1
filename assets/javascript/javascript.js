@@ -4,7 +4,7 @@ $(".modal").modal({
 	// backdrop: false,
 });
 var database = firebase.database();
-var userRef = null;
+var userRef = database.ref();
 var userCount =  database.ref("users");
 var currentHero;
 var imgURL;
@@ -25,13 +25,8 @@ var indexARR = [];
 var timeOut;
 var currentUser;
 $("#anonymous").on("click", function(){
-
-	firebase.auth().signInAnonymously().catch(function(error) {
-  		// Handle Errors here.
-  		var errorCode = error.code;
- 		var errorMessage = error.message;
-  		// ...
-	});
+	console.log("selected guest login");
+	
 
 	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   .then(function() {
@@ -51,7 +46,7 @@ $("#anonymous").on("click", function(){
 });
 
 firebase.auth().onAuthStateChanged(function(user){
-
+console.log("AuthStateChanged");
 	
 if(user){
 
