@@ -29,7 +29,11 @@ $("#anonymous").on("click", function(){
 
 	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   .then(function() {
-   
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
     return firebase.auth().signInAnonymously();
   })
   .catch(function(error) {
@@ -80,6 +84,13 @@ firebase.auth().onAuthStateChanged(function(user){
 	     });
 		
 	}
+	else{
+
+			$("#auth").show();
+			$(".page-header").hide();
+			// $("#main-menu-image").hide();
+	}
+
 
 
 });
@@ -91,11 +102,10 @@ function compare(){
 	if(saves>losses){
 
 		//update final modal
-		return true;
 	}
 	else if(losses > saves){
 
-		return false;
+		//update final modal
 	}
 
 
@@ -136,7 +146,7 @@ function playSound (Sound) {
 }
 
 window.onload = function() {
-	$(".puzzle-container").hide();
+	$(".puzzle-container").git hide();
 	$("#frame").hide();
 	$("#score-panel").hide();
 	// $("#main-menu-image").hide();
@@ -158,13 +168,8 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		pauseAudio();
 		// $(".page-header").hide();
 		// $("#main-menu-image").hide();
-		if(randomHeros.length > 0){
-			timeOut = setTimeout(modalcontrol, 28000);
-		}
-		else if(randomHeros.length <= 0){
-
-			timeout = setTimeout(modalcontrol, 18000);
-
+		if(randomHeros.length !=0){
+		timeOut = setTimeout(modalcontrol, 28000);
 		}
 
 	});
@@ -176,47 +181,13 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 		// $(".page-header").show();
 		// $("#main-menu-image").show();
 		$("#ytplayer").attr("src", "");
-		if(randomHeros.length <= 0){
+		if(randomHeros.length <= 0){ 
 				//show final modal
 				//get saved and lost numbers
-				$("#final-screen").modal("show");
-				$("#saves").children().detach().appendTo("#final-saves");
-				$("#losses").children().detach().appendTo("#final-losses");
-				if(compare()){
-
-					//append text to final-screen
-
-				}
-				else{
-
-					//append text to final-screen
-
-				}
+				getNext();
 	
 		}
-		else{
-
-				modalcontrol();
-		}
-
-});
-$("#final-screen").on("hidden.bs.modal", function(){
-
-	
-	if($("#replay").data("clicked")){
-
-		getNext();
-		
-	}
-	else if($("#quit").data("clicked")){
-
-		location.reload();
-	}
-	else{
-
-		getNext();
-	}
-
+		modalcontrol();
 
 });
 //on final modal hide show startmodal??
@@ -660,25 +631,24 @@ function decrement() {
       number--;
       
       if(number <  15) {
-      	$("#timer").css("color", "yellow");
-      	console.log("yellow");
+      	$("#timer").css("color", "yellow").html("<h1>" + number + "</h1>");
       }
 
       else if(number < 10) {
-      	$("#timer").css("color", "red");
+      	$("#timer").css("color", "red").html("<h1>" + number + "</h1>");
       }
 
       else if(number === 0) {
         stop();
-        $("#timer").css("color", "red");
+        $("#timer").css("color", "red").html("<h1>0</h1>");
         
       }
-      
+      else{
 
-      $("#timer").html("<h1>" + number + "</h1>");
+      	$("#timer").html("<h1>" + number + "</h1>");
 
 
-      
+      }
 
 
       if(isWin(rowsCol) && randomHeros.length > 0){
@@ -717,8 +687,14 @@ function decrement() {
 						return user;
 			});
 			$("#startCinematic").modal("show");
-			//final modal will show her
+			//final modal will show here
+			$("#startCinematic").on("shown.bs.modal", function(){
+				stop();
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=62&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				pauseAudio();
 
+				// modalcontrol();
+			 });
 			
 			
 			// stop();
@@ -736,10 +712,14 @@ function decrement() {
 
 			$("#startCinematic").modal("show");
 			//final modal will show here
+			$("#startCinematic").on("shown.bs.modal", function(){
+				stop();
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				pauseAudio();
+			 });
 
 			// modalcontrol();
 			// $()
-
 			// $("#startCinematic").modal("show");//final modal will show here
 			// stop();
 		}
