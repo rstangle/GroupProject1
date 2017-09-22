@@ -4,8 +4,7 @@ $(".modal").modal({
 	// backdrop: false,
 });
 var database = firebase.database();
-var userRef = database.ref();
-var userCount =  database.ref("users");
+var userRef = database.ref("users");
 var currentHero;
 var imgURL;
 var saves;
@@ -46,51 +45,57 @@ $("#anonymous").on("click", function(){
 });
 
 firebase.auth().onAuthStateChanged(function(user){
-console.log("AuthStateChanged");
-	
-if(user){
-
-	if(user.isAnonymous){
-
-		currentUser = user.uid;
-		console.log(currentUser);
+	console.log("AuthStateChanged");
 		
+	if(user){
 
+		if(user.isAnonymous){
+
+			currentUser = user.uid;
+			console.log(currentUser);
+			$(".page-header").show();
+			$("#main-menu-image").show();
+			$("#login").hide();
+			$("#auth").hide();
+			userRef = database.ref("users/"+currentUser);
+			userRef.onDisconnect().remove();
+			console.log("THIS SECTION SEEN");
+
+		}
+		else if(user.displayName){
+
+			currentUser = user.displayName;
+			console.log(currentUser);
+			$(".page-header").show();
+			$("#main-menu-image").show();
+			$("#login").hide();
+			$("#auth").hide();
+			userRef = database.ref("users/"+currentUser);
+			userRef.onDisconnect().remove();
+			console.log("THIS SECTION SEEN");
+			
+		}
+		userRef.on("value", function(snap){
+		console.log("userref on value")
+			currentHero = snap.val().currentHero;
+			saves = snap.val().saves;
+			losses = snap.val().losses;
+			console.log(saves+" "+losses);
+	     });
+		
 	}
 	else{
 
-		currentUser = user.displayName;
-		console.log(currentUser);
-
-		
+			$("#auth").show();
+			$(".page-header").hide();
+			// $("#main-menu-image").hide();
 	}
-	$(".page-header").show();
-		$("#main-menu-image").show();
-		$("#login").hide();
-		$("#auth").hide();
-		userRef = database.ref(currentUser);
-		userRef.onDisconnect().remove();
-		console.log("THIS SECTION SEEN");
-}
-else{
-
-		$("#auth").show();
-		$(".page-header").hide();
-		// $("#main-menu-image").hide();
-}
 
 
 
 });
 
-userRef.on("value", function(snap){
 
-
-	currentHero = snap.val().currentHero;
-	saves = snap.val().saves;
-	losses = snap.val().losses;
-	console.log(saves+" "+losses);
-});
 
 function compare(){
 
