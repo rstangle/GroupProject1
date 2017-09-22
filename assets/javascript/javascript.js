@@ -171,19 +171,25 @@ function appendFinal(){
 	$("#saves").children().detach().appendTo("#final-saves");
 	$("#losses").children().detach().appendTo("#final-losses");
 	// define final texts here
+	console.log(compare());
 	if(compare()){
-
-		$("#win-lose-message").html("<h1>"+"You Beat Thanos"+"</h1>");//edit message
+		console.log("win");
+		$("#win-lose-message").html("<h3> You Beat Thanos </h3>");//edit message
 
 	}
-	else{
+	else if(!compare()){
 
-
-		$("#win-lose-message").html("<h1>"+"Thanos defeated the heros"+"</h1>");//edit message
+		console.log("lose");
+		$("#win-lose-message").html("<h3> Thanos defeated the heros </h3>");//edit message
 
 	}
 	
 
+}
+function hideMovieShowFinal(){
+
+	$("#startCinematic").modal("hide");
+	$("#final-screen").modal("show");
 }
 $("#startCinematic").on("shown.bs.modal", function(){
 		console.log("shown");
@@ -193,9 +199,9 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		if(randomHeros.length > 0){
 			timeOut = setTimeout(modalcontrol, 28000);
 		}
-		else if(randomHeros.length === 0){
+		else if(randomHeros.length <= 0){
 
-			timeout = setTimeout(modalcontrol, 20000);
+			timeOut = setTimeout(hideMovieShowFinal, 22000);
 			console.log(compare());
 			if(compare()){
 
@@ -204,7 +210,7 @@ $("#startCinematic").on("shown.bs.modal", function(){
 				pauseAudio();
 
 			}
-			else{
+			else if(!compare()){
 
 				stop();
 				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
@@ -217,7 +223,8 @@ $("#startCinematic").on("shown.bs.modal", function(){
 
 $("#startCinematic").on("hidden.bs.modal", function(){
 		console.log("hidden");
-		clearTimeout(timeOut);
+		
+		console.log("time out cleared")
 		playAudio();
 		// $(".page-header").show();
 		// $("#main-menu-image").show();
@@ -227,25 +234,31 @@ $("#startCinematic").on("hidden.bs.modal", function(){
 });
 $("#final-screen").on("shown.bs.modal", function(){
 
-	appendFinal();
+		
+		appendFinal();
 
 });
 
 $("#final-screen").on("hidden.bs.modal", function(){
 
+		
 		getNext();
-		console.log("hidden");
-		clearTimeout(timeOut);
+		console.log("hidden no quit");
+		
 		playAudio();
 		// $(".page-header").show();
 		// $("#main-menu-image").show();
 		
 		modalcontrol();
 
+});
+$("#quit").on("click", function(){
 
+	window.close();
 })
 function modalcontrol(){
 //control final modal 
+	clearTimeout(timeOut);
 	if(randomHeros.length > 0){
 		
 		$("#startCinematic").modal("hide");
@@ -752,12 +765,7 @@ function decrement() {
 			});
 			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#startCinematic").on("shown.bs.modal", function(){
-				
-
-				// modalcontrol();
-			 });
-			
+		
 			
 			// stop();
 			 
@@ -774,11 +782,7 @@ function decrement() {
 
 			$("#startCinematic").modal("show");
 			//final modal will show here
-			$("#startCinematic").on("shown.bs.modal", function(){
-				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/l6LLCvPedWM?autoplay=1&controls=0&start=6&end=24&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
-				pauseAudio();
-			 });
+			
 
 			// modalcontrol();
 			// $()
