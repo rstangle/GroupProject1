@@ -23,6 +23,24 @@ var rowsCol;
 var indexARR = [];
 var timeOut;
 var currentUser;
+
+function logOut(){
+
+
+	firebase.auth().signOut().then(function() {
+
+  // Sign-out successful.
+	}).catch(function(error) {
+
+  // An error happened.
+  	var errorCode = error.code;
+    var errorMessage = error.message;
+	});
+
+	window.location.reload();
+
+
+}
 $("#anonymous").on("click", function(){
 	
 	
@@ -84,12 +102,10 @@ firebase.auth().onAuthStateChanged(function(user){
 	     });
 		
 	}
-	// else{
+	
 
-	// 		$("#auth").show();
-	// 		$(".page-header").hide();
-	// 		// $("#main-menu-image").hide();
-	// }
+		
+	
 
 
 
@@ -790,7 +806,7 @@ function pauseAudio() {
 // *******************************************
 //not done yet
 function getNext(){
-	
+
 	if(randomHeros.length > 0){
 	indexARR =[];
 	$(".grid").empty();
