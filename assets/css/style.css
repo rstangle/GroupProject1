@@ -44,8 +44,6 @@ body {
 }
 
 #anonymous {
-/*	position: relative;*/
-/*	left: 167px;*/
 	text-align: center;
 	min-width: 220px;
 	min-height: 40px;
@@ -55,23 +53,6 @@ body {
 .firebaseui-idp-button {
 	margin-top: 30%;
 }
-
-/*#background {
-	background-image: url("../assets/images/images/space3.jpg");
-	background-color: black;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-attachment: fixed;
-	background-size: cover;
-	padding-bottom: 200px;
-	min-height: 1000px;
-}
-*/
-/*#headline {
-	background-color: rgba(8, 24, 57, 0.7);
-	position: relative;
-	z-index: 2;
-}*/
 
 #logo {
 	background-image: url("../images/images/Marvel-logo.png");
@@ -88,7 +69,6 @@ h1 {
 	font-family: 'Black Ops One', cursive;
 	color: white;
 	font-size: 54px;
-/*	float: left;*/
 	letter-spacing: 1px;
 	padding-left: 3%;
 	clear: both;
@@ -128,7 +108,6 @@ h1 {
 	font-family: 'Anton', sans-serif;
 	position: absolute;
 	top: 3%;
-/*	left: -2px;*/
 	z-index: 6;
 	margin: 10px auto 0px auto;
 	text-align: center;
@@ -136,8 +115,6 @@ h1 {
 
 .sub-menu {
 	color: #ffc107;
-	/*position: relative;
-	z-index: 0;*/
 	margin-top: 20px;
 	text-align: center;
 }
@@ -169,7 +146,6 @@ h1 {
 
 #modalIntergame {
 	text-align: center;
-/*	font-family: 'Audiowide', sans-serif;*/
 }
 
 #continue {
@@ -206,13 +182,29 @@ h1 {
 	clear: both;
 }
 
+#startCinematic > .modal-dialog,
+#final-screen > .modal-dialog {
+	width: 70%;
+	height: 70%;
+}
+
+#startCinematic, #final-screen {
+	margin-top: 7%;
+}
+
 #cinematic-modal {
 	background-color: black;
 }
 
-#cinematic-modal > .modal-body {
+#cinematic-modal > .modal-body,
+#final-screen > .modal-body {
 	padding: 0px;
 }
+
+/*#final-screen > .modal-dialog {
+	width: 70%;
+	height: 70%;
+}*/
 
 #win-lose-message {
 	font-size: 40px;	
@@ -222,16 +214,6 @@ h1 {
 	position: relative;
 	text-align: center;
 }
-
-/*.well {
-	position: relative;
-	top: 250px;
-	margin-left: 15%;
-	background-color: rgba(8, 24, 57, 0.3);
-	border: solid 3px #18355f;
-	min-height: 455px;
-	text-align: center;
-}*/
 
 .panel {
 	position: relative;
@@ -244,11 +226,6 @@ h1 {
 	box-shadow: 2px 2px 5px #181b24;
 	font-family: 'Audiowide', cursive;
 }
-
-/*.panel {
-	margin-bottom: 40%;
-	background-color: rgba(8, 24, 57, 0.3);
-}*/
 
 #frame {
 	margin: 10% auto;
@@ -272,11 +249,6 @@ h1 {
 	text-align: center;
 	margin: 0% auto;
 }
-
-/*#timer > h1 {
-	font-size: 36px;
-	text-align: center;
-}*/
 
 .puzzle-container {
 	position: relative;
@@ -317,12 +289,10 @@ h1 {
 	margin:auto;
 	height: 50px;
 	width:100%;
-/*	text-align: center center;*/
-/*	border:1px solid black;*/
 }
+
 .mybtn {
 	color:white;
-/*	background:#21414D;*/
 	margin: 0% 5%;
 	text-align: center;
 }
@@ -335,8 +305,6 @@ h1 {
 	position:relative;
 	width:300px;
 	height:450px;
-/*	padding:5px;*/
-/*	border:0.1px solid black;*/
 	float: left;
 	margin:10px;
 	margin-top: 0;
@@ -347,10 +315,6 @@ h1 {
 	display: block;
 	clear: both; 
 }
-
-/*.page-header {
-	text-align: center;
-}*/
 
 .navbar-static-bottom {
 	padding: 20px 20px 10px 20px;
