@@ -700,7 +700,7 @@ function decrement() {
 			 });
 			
 			
-			// stop();
+			stop();
 			 
 
 		}
@@ -724,7 +724,7 @@ function decrement() {
 			// modalcontrol();
 			// $()
 			// $("#startCinematic").modal("show");//final modal will show here
-			// stop();
+			stop();
 		}
     }
 
