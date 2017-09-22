@@ -190,13 +190,13 @@ function appendFinal(){
 	
 	if(compare()){
 
-		$("#win-lose-message").html("<h3> You Beat Thanos </h3>");//edit message
+		$("#final-message").html("<h3> You Beat Thanos </h3>");//edit message
 
 	}
 	else{
 
 		
-		$("#win-lose-message").html("<h3> Thanos defeated the heros </h3>");//edit message
+		$("#final-message").html("<h3> Thanos defeated the heros </h3>");//edit message
 
 	}
 	
