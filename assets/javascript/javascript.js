@@ -195,7 +195,7 @@ function appendFinal(){
 	
 	if(compare()){
 		console.log("win");
-		$("#end-game-message").html("<h2>You Beat Thanos</h2>");//edit message
+		$("#end-game-message").html("<h2>Congratulations!<br>You Beat Thanos</h2>");//edit message
 		// $("#win-lose-message").html("<h3>Danger True Believers!<br> You lost " + currentHero.toUpperCase() + ".</h3>");
 
 
