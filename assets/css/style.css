@@ -210,6 +210,11 @@ h1 {
 
 #final-modal {
 	text-align: center;
+	margin-top: 6%;
+}
+
+#final-screen {
+	margin-top: 6%;
 }
 
 #final-modal > .modal-body {
