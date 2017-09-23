@@ -15,7 +15,7 @@ var EFX1 = "ballbounce_1";
 var EFX2 = "SWISH";
 var backgroundMusic = "M-GameBG";
 var ambientMusic = "ambient";
-var heroImage = ["cyclops (x-men: battle of the atom)", "squirrel girl", "omega red", "magneto (x-men: battle of the atom)","rogue (x-men: battle of the atom)", "captain america", "captain marvel (carol danvers)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
+var heroImage = ["cyclops (x-men: battle of the atom)", "quicksilver", "rocket raccoon", "squirrel girl", "omega red", "magneto (x-men: battle of the atom)","rogue (x-men: battle of the atom)", "captain america", "captain marvel (carol danvers)", "vision", "dr. strange (marvel: avengers alliance)", "hulk", "cable", "silver surfer", "spider-man", "wolverine", "storm", "jean grey", "guardians of the galaxy", "gladiator (kallark)", "colossus", "nova", "iron man" ]
 var number = 0;
 var randomHeros = [];
 var pieceW = 300;
@@ -204,7 +204,7 @@ function appendFinal(){
 
 
 		console.log("lose");
-		$("#end-game-message").html("<h2> Thanos defeated the heroes </h2>");//edit message
+		$("#end-game-message").html("<h2>Thanos defeated Earth's Mightiest Heroes</h2>");//edit message
 
 
 	}
@@ -225,13 +225,13 @@ $("#startCinematic").on("shown.bs.modal", function(){
 		}
 		else if(randomHeros.length <= 0){
 
-			timeOut = setTimeout(hideMovieShowFinal, 28000);
+			timeOut = setTimeout(hideMovieShowFinal, 20000);
 			console.log(compare());
 
 			if(compare()){
 
 				stop();
-				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=62&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
+				$("#ytplayer").attr("src", "https://www.youtube.com/embed/v2QkEFaMvyk?autoplay=1&controls=0&start=68&end=86&modestbranding=1&disablekb=1&enablejsapi=1&rel=0&showinfo=0&origin=http://example.com");
 				pauseAudio();
 
 			}
