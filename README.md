@@ -21,7 +21,7 @@ Mark Soliman: Lead JavaScript Developer, Back End Developer.
 
 Erik Denman: JavaScript Developer, Back End Developer.
 
-Tony Caio: Front End Developer and Quality Control.
+Tony Caio: Storyboard, Front End Developer, Quality Control.
 
 Video clips provided by YouTube. © All rights reserved.
 Data provided by Marvel. © 2014 Marvel. © Characters and names are properties of Marvel Entertainment Group. All rights reserved.
