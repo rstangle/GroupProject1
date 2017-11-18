@@ -15,7 +15,7 @@ This is a puzzle game app played on the desktop. The player chooses a difficulty
 
 
 ## Credits
-Ryan Stangle: Project Manager, Creative Director, Front End Developer.
+Ryan Stangle: Project Manager, Creative Director, Lead Front End Developer.
 
 Mark Soliman: Lead JavaScript Developer, Lead Back End Developer.
 
